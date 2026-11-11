@@ -12,6 +12,10 @@ return Application::configure(basePath: dirname(__DIR__))
     )
     ->withMiddleware(function (Middleware $middleware): void {
 
+        // Render (y otros hostings) sirven la app detrás de un proxy HTTPS.
+        // Sin esto, Laravel genera enlaces http:// y el navegador bloquea el CSS.
+        $middleware->trustProxies(at: '*');
+
         $middleware->alias([
             'trackfit.profile' => \App\Http\Middleware\EnsureTrackFitProfileIsComplete::class,
         ]);
