@@ -103,6 +103,206 @@ body {
   color: white;
 }
 
+/* ==========================================
+   ENTRENO: CABECERA Y AJUSTE RESPONSIVE
+   ========================================== */
+
+.tf-workout-page,
+.tf-workout-page *,
+.tf-workout-page *::before,
+.tf-workout-page *::after {
+    box-sizing: border-box;
+}
+
+.tf-workout-page {
+    min-width: 0;
+    justify-content: flex-start;
+    padding: 36px 20px 60px;
+}
+
+.tf-workout-page .tf-workout-header {
+    display: block;
+    width: 100%;
+    max-width: 980px;
+    min-width: 0;
+    margin: 0 auto 28px;
+    text-align: center;
+}
+
+.tf-workout-page .tf-workout-heading {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    min-width: 0;
+}
+
+.tf-workout-page .tf-workout-kicker {
+    display: block;
+    margin-bottom: 14px;
+    color: #bd9be9;
+    font-size: 12px;
+    font-weight: 800;
+    letter-spacing: .12em;
+    text-transform: uppercase;
+}
+
+.tf-workout-page .tf-workout-header .tf-title {
+    display: inline-block;
+    max-width: 100%;
+    margin: 0 0 18px;
+    padding: 16px 36px;
+    font-size: clamp(1.8rem, 4vw, 3rem);
+    line-height: 1.2;
+    overflow-wrap: anywhere;
+}
+
+.tf-workout-page .tf-workout-meta {
+    display: flex;
+    justify-content: center;
+    flex-wrap: wrap;
+    gap: 10px;
+    margin-bottom: 16px;
+}
+
+.tf-workout-page .tf-workout-meta span {
+    padding: 8px 12px;
+    border: 1px solid rgba(124, 58, 237, .35);
+    border-radius: 10px;
+    background: rgba(124, 58, 237, .08);
+    color: #dfd1ed;
+    font-size: 13px;
+    line-height: 1.5;
+}
+
+.tf-workout-page .tf-workout-header .tf-subtitle {
+    display: block;
+    width: fit-content;
+    max-width: 100%;
+    margin: 0;
+    padding: 11px 20px;
+    font-size: 14px;
+    line-height: 1.6;
+}
+
+/* La tarjeta no supera el ancho del contenido. */
+.tf-workout-page .tf-workout-card {
+    width: 100%;
+    max-width: 980px;
+    min-width: 0;
+    margin: 0 auto;
+}
+
+.tf-workout-page #workoutForm,
+.tf-workout-page .tf-ex-block,
+.tf-workout-page .tf-ex-head > *,
+.tf-workout-page .tf-weight-input-wrap,
+.tf-workout-page .tf-intensity-grid > *,
+.tf-workout-page .tf-rest-grid > * {
+    min-width: 0;
+}
+
+.tf-workout-page .tf-ex-block .tf-ex-title {
+    padding: 0;
+    overflow-wrap: anywhere;
+}
+
+/* Cabecera y filas utilizan las mismas columnas. */
+.tf-workout-page .tf-set-labels,
+.tf-workout-page .tf-set-row {
+    grid-template-columns:
+        46px
+        minmax(0, 1fr)
+        minmax(0, 1fr)
+        96px;
+    gap: 12px;
+}
+
+.tf-workout-page .tf-set-row .tf-input {
+    width: 100%;
+    min-width: 0;
+    max-width: none;
+    margin: 0;
+}
+
+.tf-workout-page .tf-set-row .tf-remove-set {
+    width: 100%;
+    margin: 0;
+    padding: 10px;
+}
+
+.tf-workout-page .tf-workout-back {
+    display: flex;
+    justify-content: center;
+    margin-top: 24px;
+}
+
+@media (max-width: 700px) {
+    .tf-workout-page {
+        padding: 26px 14px 44px;
+    }
+
+    .tf-workout-page .tf-workout-card {
+        padding: 20px 14px;
+    }
+
+    .tf-workout-page .tf-ex-block {
+        padding: 15px 12px;
+    }
+
+    .tf-workout-page .tf-intensity-grid,
+    .tf-workout-page .tf-rest-grid {
+        grid-template-columns: minmax(0, 1fr);
+    }
+}
+
+@media (max-width: 620px) {
+    .tf-workout-page .tf-set-labels {
+        display: none;
+    }
+
+    .tf-workout-page .tf-set-row {
+        grid-template-columns:
+            40px
+            minmax(0, 1fr)
+            minmax(0, 1fr);
+        gap: 9px;
+    }
+
+    .tf-workout-page .tf-set-row > .tf-input,
+    .tf-workout-page .tf-set-row .tf-weight-input-wrap {
+        grid-column: auto;
+    }
+
+    .tf-workout-page .tf-set-row .tf-remove-set {
+        grid-column: 2 / -1;
+    }
+
+    .tf-workout-page .tf-set-row .tf-input {
+        font-size: 16px;
+    }
+
+    .tf-workout-page .tf-workout-header .tf-title {
+        padding: 14px 24px;
+    }
+
+    .tf-workout-page .tf-workout-back .tf-link {
+        width: 100%;
+        text-align: center;
+    }
+}
+
+@media (max-width: 380px) {
+    .tf-workout-page .tf-set-row {
+        grid-template-columns: 40px minmax(0, 1fr);
+    }
+
+    .tf-workout-page .tf-set-row > .tf-input,
+    .tf-workout-page .tf-set-row .tf-weight-input-wrap,
+    .tf-workout-page .tf-set-row .tf-remove-set {
+        grid-column: 2;
+    }
+}
+
 .tf-card p {
   margin-top: 12px;
   color: rgba(255, 255, 255, 0.65);
