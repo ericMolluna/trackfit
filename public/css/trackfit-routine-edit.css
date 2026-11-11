@@ -1,0 +1,669 @@
+/* =========================================================
+   RUTINA-SEGUIR: selector, acciones, editor y diálogos
+   ========================================================= */
+
+.tf-routine-follow-page,
+.tf-routine-follow-page *,
+.tf-routine-follow-page *::before,
+.tf-routine-follow-page *::after,
+.tf-dialog,
+.tf-dialog * {
+    box-sizing: border-box;
+}
+
+.tf-routine-follow-page .tf-page-head .tf-title,
+.tf-routine-follow-page .tf-page-head .tf-subtitle {
+    max-width: 100%;
+    overflow-wrap: anywhere;
+}
+
+/* ---------- Selector de rutinas ---------- */
+
+.tf-routine-selector {
+    width: 100%;
+    max-width: 1100px;
+    min-width: 0;
+    margin: 0 auto 24px;
+    padding: 22px;
+    border: 1px solid rgba(124, 58, 237, .4);
+    border-radius: 20px;
+    background: rgba(124, 58, 237, .04);
+    text-align: left;
+}
+
+.tf-routine-selector-heading {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    flex-wrap: wrap;
+    gap: 16px;
+    margin-bottom: 18px;
+}
+
+.tf-routine-selector-heading > div {
+    min-width: 0;
+}
+
+.tf-routine-selector-heading h2 {
+    margin: 0 0 5px;
+    color: #fff;
+    font-size: 1.15rem;
+    font-weight: 800;
+}
+
+.tf-routine-selector-heading p {
+    margin: 0;
+    color: rgba(255, 255, 255, .65);
+    font-size: .85rem;
+    line-height: 1.6;
+}
+
+.tf-routine-selector-form {
+    display: grid;
+    grid-template-columns: minmax(0, 1fr) auto;
+    align-items: end;
+    gap: 12px;
+}
+
+.tf-routine-selector-field {
+    min-width: 0;
+}
+
+.tf-routine-selector-field .tf-label {
+    margin: 0 0 8px;
+}
+
+.tf-routine-selector-field .tf-select {
+    width: 100%;
+    min-width: 0;
+    height: 52px;
+    margin: 0;
+}
+
+.tf-routine-selector-form .tf-btn {
+    min-height: 52px;
+    margin: 0;
+}
+
+/* ---------- Botones comunes ---------- */
+
+.tf-rbtn {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    gap: 7px;
+    min-height: 44px;
+    margin: 0;
+    padding: 9px 15px;
+    border: 1px solid rgba(124, 58, 237, .75);
+    border-radius: 12px;
+    background: transparent;
+    color: #fff;
+    font: inherit;
+    font-size: .84rem;
+    font-weight: 700;
+    line-height: 1.3;
+    text-decoration: none;
+    cursor: pointer;
+    transition: background .15s ease, border-color .15s ease;
+}
+
+.tf-rbtn:hover {
+    border-color: #a78bfa;
+    background: rgba(124, 58, 237, .14);
+}
+
+.tf-rbtn:disabled {
+    opacity: .45;
+    cursor: not-allowed;
+}
+
+.tf-rbtn-primary {
+    border-color: #7c3aed;
+    background: #7c3aed;
+}
+
+.tf-rbtn-primary:hover {
+    background: #6d28d9;
+}
+
+.tf-rbtn-danger {
+    border-color: rgba(239, 68, 68, .6);
+    color: #fca5a5;
+}
+
+.tf-rbtn-danger:hover {
+    border-color: #ef4444;
+    background: rgba(239, 68, 68, .12);
+}
+
+.tf-rbtn-danger-solid {
+    border-color: #dc2626;
+    background: #dc2626;
+    color: #fff;
+}
+
+.tf-rbtn-danger-solid:hover {
+    background: #b91c1c;
+}
+
+.tf-rbtn-icon {
+    width: 38px;
+    min-width: 38px;
+    min-height: 38px;
+    padding: 0;
+    border-color: rgba(255, 255, 255, .14);
+    border-radius: 10px;
+    font-size: .95rem;
+}
+
+.tf-rbtn:focus-visible,
+.tf-edit input:focus-visible,
+.tf-edit select:focus-visible,
+.tf-dialog input:focus-visible,
+.tf-dialog select:focus-visible,
+.tf-picker-item:focus-visible {
+    outline: 2px solid #c4b5fd;
+    outline-offset: 3px;
+}
+
+/* ---------- Acciones de la rutina seleccionada ---------- */
+
+.tf-routine-actions {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 10px;
+    margin-top: 18px;
+    padding-top: 18px;
+    border-top: 1px solid rgba(255, 255, 255, .08);
+}
+
+.tf-routine-alert {
+    width: 100%;
+    max-width: 1100px;
+    margin: 0 auto 20px;
+    padding: 13px 16px;
+    border: 1px solid rgba(239, 68, 68, .45);
+    border-radius: 12px;
+    background: rgba(239, 68, 68, .1);
+    color: #fecaca;
+    font-size: .88rem;
+    line-height: 1.5;
+    text-align: left;
+}
+
+.tf-routine-follow-page .tf-routine-follow-actions {
+    display: flex;
+    justify-content: center;
+    flex-wrap: wrap;
+    gap: 12px;
+}
+
+/* ---------- Editor ---------- */
+
+.tf-edit {
+    width: 100%;
+    max-width: 1100px;
+    margin: 0 auto;
+    padding: 24px;
+    border: 1px solid rgba(124, 58, 237, .55);
+    border-radius: 20px;
+    background:
+        linear-gradient(145deg, rgba(124, 58, 237, .08), transparent 45%),
+        #0b0b0d;
+    color: #fff;
+    text-align: left;
+}
+
+.tf-edit-kicker {
+    display: inline-block;
+    margin-bottom: 6px;
+    padding: 4px 9px;
+    border-radius: 8px;
+    background: rgba(124, 58, 237, .18);
+    color: #d8c2fb;
+    font-size: .7rem;
+    font-weight: 800;
+    letter-spacing: .12em;
+    text-transform: uppercase;
+}
+
+.tf-edit-title {
+    margin: 0 0 4px;
+    font-size: 1.35rem;
+    font-weight: 800;
+}
+
+.tf-edit-help {
+    margin: 0 0 20px;
+    color: rgba(255, 255, 255, .6);
+    font-size: .84rem;
+    line-height: 1.6;
+}
+
+.tf-edit-label {
+    display: block;
+    margin-bottom: 8px;
+    color: rgba(255, 255, 255, .75);
+    font-size: .78rem;
+    font-weight: 700;
+    letter-spacing: .06em;
+    text-transform: uppercase;
+}
+
+.tf-edit-input,
+.tf-edit-select {
+    width: 100%;
+    min-width: 0;
+    min-height: 48px;
+    padding: 10px 14px;
+    border: 1px solid rgba(124, 58, 237, .5);
+    border-radius: 12px;
+    background: #100c16;
+    color: #fff;
+    font: inherit;
+    font-size: .95rem;
+}
+
+.tf-edit-days {
+    display: grid;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    align-items: start;
+    gap: 16px;
+    margin-top: 22px;
+}
+
+.tf-edit-day {
+    min-width: 0;
+    padding: 16px;
+    border: 1px solid rgba(255, 255, 255, .1);
+    border-radius: 16px;
+    background: rgba(255, 255, 255, .025);
+}
+
+.tf-edit-day-head {
+    display: grid;
+    grid-template-columns: minmax(0, 1fr) auto;
+    align-items: center;
+    gap: 10px;
+    margin-bottom: 12px;
+}
+
+.tf-edit-day-head .tf-edit-select {
+    min-height: 44px;
+    font-weight: 700;
+}
+
+.tf-edit-day-count {
+    margin: 0 0 10px;
+    color: rgba(255, 255, 255, .55);
+    font-size: .78rem;
+}
+
+.tf-edit-ex-list {
+    display: grid;
+    gap: 8px;
+    margin: 0 0 12px;
+    padding: 0;
+    list-style: none;
+}
+
+.tf-edit-ex {
+    display: grid;
+    grid-template-columns: auto 46px minmax(0, 1fr) auto;
+    align-items: center;
+    gap: 10px;
+    padding: 8px;
+    border: 1px solid rgba(255, 255, 255, .07);
+    border-radius: 12px;
+    background: rgba(0, 0, 0, .35);
+}
+
+.tf-edit-ex-num {
+    width: 26px;
+    color: #c3a4ed;
+    font-size: .72rem;
+    font-weight: 800;
+    text-align: center;
+}
+
+.tf-edit-ex-img {
+    width: 46px;
+    height: 46px;
+    border-radius: 9px;
+    background: #000;
+    object-fit: contain;
+}
+
+.tf-edit-ex-name {
+    min-width: 0;
+    color: #ece4f5;
+    font-size: .86rem;
+    font-weight: 600;
+    line-height: 1.4;
+    overflow-wrap: anywhere;
+}
+
+.tf-edit-ex-btns {
+    display: flex;
+    gap: 5px;
+}
+
+.tf-edit-empty {
+    margin: 0 0 12px;
+    padding: 14px;
+    border: 1px dashed rgba(255, 255, 255, .18);
+    border-radius: 12px;
+    color: rgba(255, 255, 255, .6);
+    font-size: .82rem;
+    text-align: center;
+}
+
+.tf-edit-day .tf-rbtn-add {
+    width: 100%;
+    border-style: dashed;
+}
+
+.tf-edit-add-day {
+    margin-top: 16px;
+}
+
+.tf-edit-error {
+    margin: 16px 0 0;
+    color: #fca5a5;
+    font-size: .86rem;
+    line-height: 1.5;
+}
+
+.tf-edit-error:empty {
+    display: none;
+}
+
+.tf-edit-bar {
+    position: sticky;
+    bottom: 12px;
+    z-index: 20;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    flex-wrap: wrap;
+    gap: 12px;
+    margin-top: 22px;
+    padding: 12px 14px;
+    border: 1px solid rgba(124, 58, 237, .45);
+    border-radius: 14px;
+    background: rgba(12, 10, 16, .96);
+    box-shadow: 0 12px 30px rgba(0, 0, 0, .55);
+}
+
+.tf-edit-status {
+    color: rgba(255, 255, 255, .65);
+    font-size: .8rem;
+}
+
+.tf-edit-bar-btns {
+    display: flex;
+    gap: 10px;
+}
+
+/* ---------- Diálogos ---------- */
+
+.tf-dialog {
+    width: min(920px, calc(100vw - 24px));
+    max-height: calc(100vh - 40px);
+    padding: 0;
+    border: 1px solid rgba(124, 58, 237, .55);
+    border-radius: 18px;
+    background: #0d0b11;
+    color: #fff;
+}
+
+.tf-dialog::backdrop {
+    background: rgba(0, 0, 0, .7);
+}
+
+.tf-dialog-small {
+    width: min(460px, calc(100vw - 24px));
+}
+
+.tf-dialog-inner {
+    display: flex;
+    flex-direction: column;
+    max-height: calc(100vh - 42px);
+    padding: 20px;
+}
+
+.tf-dialog-head {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 12px;
+    margin-bottom: 14px;
+}
+
+.tf-dialog-title {
+    margin: 0;
+    font-size: 1.1rem;
+    font-weight: 800;
+}
+
+.tf-dialog-text {
+    margin: 0 0 18px;
+    color: rgba(255, 255, 255, .75);
+    font-size: .9rem;
+    line-height: 1.6;
+}
+
+.tf-dialog-foot {
+    display: flex;
+    align-items: center;
+    justify-content: flex-end;
+    flex-wrap: wrap;
+    gap: 10px;
+    margin-top: 14px;
+}
+
+.tf-dialog-foot form {
+    margin: 0;
+}
+
+.tf-picker-filters {
+    display: grid;
+    grid-template-columns: minmax(0, 1fr) 200px;
+    gap: 10px;
+    margin-bottom: 14px;
+}
+
+.tf-picker-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(150px, 1fr));
+    gap: 10px;
+    min-height: 0;
+    padding: 2px 4px 2px 2px;
+    overflow-y: auto;
+    scrollbar-width: thin;
+    scrollbar-color: #7950ad #151019;
+}
+
+.tf-picker-item {
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 6px;
+    padding: 10px;
+    border: 1px solid rgba(255, 255, 255, .1);
+    border-radius: 12px;
+    background: rgba(255, 255, 255, .03);
+    color: #fff;
+    font: inherit;
+    text-align: center;
+    cursor: pointer;
+}
+
+.tf-picker-item:hover {
+    border-color: #a78bfa;
+}
+
+.tf-picker-item[aria-pressed="true"] {
+    border-color: #7c3aed;
+    background: rgba(124, 58, 237, .2);
+}
+
+.tf-picker-item[aria-pressed="true"]::after {
+    content: "✓";
+    position: absolute;
+    top: 6px;
+    right: 8px;
+    display: grid;
+    place-items: center;
+    width: 22px;
+    height: 22px;
+    border-radius: 50%;
+    background: #7c3aed;
+    font-size: .75rem;
+    font-weight: 800;
+}
+
+.tf-picker-item img {
+    width: 100%;
+    height: 96px;
+    border-radius: 8px;
+    background: #000;
+    object-fit: contain;
+}
+
+.tf-picker-item-name {
+    font-size: .8rem;
+    font-weight: 700;
+    line-height: 1.35;
+}
+
+.tf-picker-item-group {
+    color: rgba(255, 255, 255, .5);
+    font-size: .7rem;
+}
+
+.tf-picker-empty {
+    margin: 10px 0 0;
+    color: rgba(255, 255, 255, .6);
+    font-size: .85rem;
+    text-align: center;
+}
+
+.tf-picker-count {
+    margin-right: auto;
+    color: rgba(255, 255, 255, .65);
+    font-size: .82rem;
+}
+
+/* ---------- Responsive ---------- */
+
+@media (max-width: 860px) {
+    .tf-edit-days {
+        grid-template-columns: minmax(0, 1fr);
+    }
+}
+
+@media (max-width: 640px) {
+    .tf-routine-selector {
+        padding: 18px 14px;
+    }
+
+    .tf-routine-selector-form {
+        grid-template-columns: minmax(0, 1fr);
+    }
+
+    .tf-routine-selector-heading .tf-rbtn,
+    .tf-routine-selector-form .tf-btn {
+        width: 100%;
+    }
+
+    .tf-routine-actions {
+        display: grid;
+        grid-template-columns: 1fr;
+    }
+
+    .tf-routine-follow-page .tf-page-head .tf-title {
+        padding: 14px 22px;
+        font-size: 2rem;
+    }
+
+    .tf-routine-follow-page .tf-page-head .tf-subtitle {
+        padding: 12px 18px;
+        font-size: .9rem;
+        line-height: 1.6;
+    }
+
+    .tf-routine-follow-page .tf-routine-follow-actions {
+        flex-direction: column;
+        align-items: stretch;
+    }
+
+    .tf-edit {
+        padding: 18px 12px;
+    }
+
+    .tf-edit-ex {
+        grid-template-columns: 40px minmax(0, 1fr) auto;
+    }
+
+    .tf-edit-ex-num {
+        display: none;
+    }
+
+    .tf-edit-ex-img {
+        width: 40px;
+        height: 40px;
+    }
+
+    .tf-edit-ex-btns .tf-rbtn-icon {
+        width: 34px;
+        min-width: 34px;
+        min-height: 34px;
+    }
+
+    .tf-edit-bar,
+    .tf-edit-bar-btns {
+        display: grid;
+        grid-template-columns: minmax(0, 1fr);
+        width: 100%;
+    }
+
+    .tf-edit-bar-btns {
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+    }
+
+    .tf-picker-filters {
+        grid-template-columns: minmax(0, 1fr);
+    }
+
+    .tf-picker-grid {
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+    }
+
+    .tf-edit-input,
+    .tf-edit-select,
+    .tf-dialog input,
+    .tf-dialog select {
+        font-size: 16px;
+    }
+}
+
+@media (prefers-reduced-motion: reduce) {
+    .tf-routine-follow-page *,
+    .tf-dialog * {
+        transition: none !important;
+        animation: none !important;
+    }
+}
+
+/* Que el atributo hidden siempre oculte, aunque la clase tenga display */
+.tf-routine-follow-page [hidden],
+.tf-dialog [hidden] {
+    display: none !important;
+}
+
+.tf-routine-actions form {
+    margin: 0;
+}

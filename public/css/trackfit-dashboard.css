@@ -1,0 +1,5049 @@
+html,
+body {
+  margin: 0;
+  padding: 0;
+  background: #000 !important;
+  color: white;
+  height: 100%;
+  font-family: system-ui, -apple-system, Segoe UI, Roboto, Arial, sans-serif;
+}
+
+/* Contenedor general */
+.tf-dashboard {
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  padding: 40px 20px;
+  background-color: black;
+}
+
+.tf-dashboard-spaced {
+  padding-top: 28px;
+}
+
+/* Texto principal con borde */
+.tf-title {
+  font-size: 3.2rem;
+  font-weight: 900;
+  padding: 18px 50px;
+  border: 2px solid rgba(124, 58, 237, 0.9);
+  border-radius: 999px;
+  margin-bottom: 25px;
+  display: inline-block;
+}
+
+/* Subtítulo estilo botón */
+.tf-subtitle {
+  font-size: 1.1rem;
+  padding: 12px 35px;
+  border: 1px solid rgba(255, 255, 255, 0.18);
+  border-radius: 999px;
+  color: rgba(255, 255, 255, 0.75);
+  margin-bottom: 70px;
+  display: inline-block;
+}
+
+/* Grid botones principales */
+.tf-grid {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 55px;
+  width: 100%;
+  max-width: 900px;
+}
+
+@media (min-width: 900px) {
+  .tf-grid {
+    grid-template-columns: 1fr 1fr;
+  }
+}
+
+/* Cards */
+.tf-card {
+  padding: 45px;
+  border-radius: 22px;
+  border: 2px solid rgba(255, 255, 255, 0.15);
+  background: rgba(255, 255, 255, 0.03);
+  text-decoration: none;
+  transition: 0.25s ease;
+}
+
+.tf-card:hover {
+  transform: translateY(-4px);
+}
+
+/* Azul rutina */
+.tf-card.blue,
+.tf-card.purple {
+  border-color: rgba(124, 58, 237, 0.9);
+}
+
+.tf-card.blue:hover,
+.tf-card.purple:hover {
+  background: rgba(124, 58, 237, 0.253);
+}
+
+/* Lila alimentación */
+.tf-card.green {
+  border-color: rgba(109, 237, 58, 0.85);
+}
+
+.tf-card.green:hover {
+  background: rgba(58, 237, 58, 0.1);
+}
+
+/* Textos dentro */
+.tf-card h2 {
+  margin: 0;
+  font-size: 1.8rem;
+  font-weight: 800;
+  color: white;
+}
+
+.tf-card p {
+  margin-top: 12px;
+  color: rgba(255, 255, 255, 0.65);
+  font-size: 1rem;
+  line-height: 1.4;
+}
+
+.tf-link {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 10px;
+  padding: 12px 16px;
+  border-radius: 16px;
+  background: transparent;
+  color: #fff;
+  text-decoration: none;
+  font-weight: 700;
+  border: 1px solid rgba(124, 58, 237, 0.9);
+  cursor: pointer;
+  user-select: none;
+  transition: transform 0.08s ease, border-color 0.15s ease, background 0.15s ease;
+}
+
+.tf-link:hover {
+  color: white;
+  text-decoration: underline;
+}
+
+.tf-label {
+  display: block;
+  font-size: 12px;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  color: rgba(255, 255, 255, 0.7);
+  margin: 10px 0 8px;
+}
+
+.tf-form .tf-label {
+  display: block;
+  margin: 10px 0 6px;
+  opacity: 0.8;
+  font-size: 13px;
+}
+
+.tf-input {
+  width: 100%;
+  padding: 12px 14px;
+  border-radius: 14px;
+  background: rgba(255, 255, 255, 0.04);
+  border: 1px solid rgba(255, 255, 255, 0.14);
+  color: #fff;
+  outline: none;
+}
+
+.tf-input:focus {
+  border-color: rgba(124, 58, 237, 0.8);
+  box-shadow: 0 0 0 3px rgba(124, 58, 237, 0.22);
+}
+
+.tf-input::placeholder {
+  color: rgba(255, 255, 255, 0.5);
+}
+
+/* opciones */
+.tf-input option {
+  background: #111;
+  color: #fff;
+}
+
+.tf-input-sm {
+  padding: 10px 12px;
+  border-radius: 14px;
+  max-width: 320px;
+}
+
+#nameSearch {
+  flex: 1;
+  min-width: 220px;
+}
+
+.tf-select {
+  background: #0f0f0f;
+  color: #fff;
+  border: 1px solid rgba(255, 255, 255, 0.2);
+  border-radius: 14px;
+  padding: 10px 14px;
+  outline: none;
+  appearance: none;
+  cursor: pointer;
+}
+
+.tf-select:focus {
+  border-color: #4f46e5;
+  box-shadow: 0 0 0 2px rgba(79, 70, 229, 0.2);
+}
+
+.tf-days {
+  display: flex;
+  gap: 10px;
+  flex-wrap: wrap;
+}
+
+.tf-day {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+}
+
+.tf-day input {
+  display: none;
+}
+
+.tf-day span {
+  width: 44px;
+  height: 44px;
+  border-radius: 999px;
+  border: 1px solid rgba(255, 255, 255, 0.18);
+  display: grid;
+  place-items: center;
+  color: rgba(255, 255, 255, 0.8);
+  transition: 0.2s;
+}
+
+.tf-day input:checked + span {
+  border-color: rgba(124, 58, 237, 0.9);
+  box-shadow: 0 0 0 3px rgba(124, 58, 237, 0.22);
+  color: #fff;
+}
+
+.tf-row-tools {
+  display: flex;
+  gap: 12px;
+  align-items: center;
+  flex-wrap: wrap;
+}
+
+.tf-row {
+  display: flex;
+  gap: 12px;
+  flex-wrap: wrap;
+  margin-top: 10px;
+}
+
+.tf-col {
+  flex: 1;
+  min-width: 220px;
+}
+
+.tf-ex-list {
+  margin-top: 14px;
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+.tf-ex-item {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 14px;
+  padding: 12px 14px;
+  border-radius: 14px;
+  border: 1px solid rgba(255, 255, 255, 0.12);
+  background: rgba(255, 255, 255, 0.03);
+}
+
+.tf-ex-name {
+  color: #fff;
+  font-weight: 700;
+}
+
+.tf-ex-remove {
+  border: 1px solid rgba(255, 255, 255, 0.16);
+  background: transparent;
+  color: rgba(255, 255, 255, 0.75);
+  padding: 8px 12px;
+  border-radius: 999px;
+  cursor: pointer;
+}
+
+.tf-ex-remove:hover {
+  color: #fff;
+  border-color: rgba(255, 255, 255, 0.28);
+}
+
+.tf-error {
+  color: #ffb4b4;
+}
+
+.tf-ex-grid {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 14px;
+}
+
+@media (min-width: 700px) {
+  .tf-ex-grid {
+    grid-template-columns: repeat(3, 1fr);
+  }
+}
+
+@media (min-width: 1000px) {
+  .tf-ex-grid {
+    grid-template-columns: repeat(4, 1fr);
+  }
+}
+
+.tf-ex-card {
+  border: 1px solid rgba(255, 255, 255, 0.14);
+  background: rgba(255, 255, 255, 0.03);
+  border-radius: 18px;
+  overflow: hidden;
+  cursor: pointer;
+  transition: 0.2s ease;
+  user-select: none;
+  position: relative;
+}
+
+.tf-ex-card input {
+  display: none;
+}
+
+.tf-ex-card:hover {
+  transform: translateY(-2px);
+  border-color: rgba(255, 255, 255, 0.28);
+}
+
+.tf-ex-card img {
+  width: 100%;
+  height: 200px;
+  object-fit: cover;
+  display: block;
+}
+
+.tf-ex-title {
+  padding: 10px 12px 0;
+  font-weight: 900;
+  color: #fff;
+  font-size: 14px;
+}
+
+.tf-ex-group {
+  padding: 6px 12px 12px;
+  color: rgba(255, 255, 255, 0.6);
+  font-size: 11px;
+  letter-spacing: 0.12em;
+}
+
+/* seleccionado */
+.tf-ex-card:has(input:checked) {
+  border-color: rgba(124, 58, 237, 0.9);
+  box-shadow: 0 0 0 3px rgba(124, 58, 237, 0.22);
+}
+
+.tf-tags {
+  display: flex;
+  gap: 6px;
+  flex-wrap: wrap;
+  padding: 0 12px 12px;
+}
+
+.tf-tag {
+  font-size: 10px;
+  letter-spacing: 0.12em;
+  padding: 6px 10px;
+  border-radius: 999px;
+  border: 1px solid rgba(255, 255, 255, 0.14);
+  color: rgba(255, 255, 255, 0.75);
+  background: rgba(255, 255, 255, 0.03);
+}
+
+.tf-filters {
+  display: flex;
+  gap: 12px;
+  flex-wrap: wrap;
+  align-items: center;
+  margin-bottom: 14px;
+}
+
+/* SELECT DARK MODE */
+.tf-filters select {
+  background: #0f0f0f;
+  color: #fff;
+  border: 1px solid rgba(255, 255, 255, 0.2);
+  border-radius: 14px;
+  padding: 10px 14px;
+  outline: none;
+  appearance: none;
+}
+
+.tf-filters select:focus {
+  border-color: #4f46e5;
+  box-shadow: 0 0 0 2px rgba(79, 70, 229, 0.2);
+}
+
+.tf-filters select option {
+  background: #111;
+  color: #fff;
+}
+
+.tf-ex-block {
+  margin-top: 18px;
+  padding: 14px;
+  border: 1px solid rgba(255, 255, 255, 0.12);
+  border-radius: 14px;
+}
+
+.tf-ex-head {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 12px;
+  margin-bottom: 12px;
+}
+
+.tf-set-row {
+  display: flex;
+  gap: 10px;
+  align-items: center;
+  flex-wrap: wrap;
+  margin-bottom: 10px;
+}
+
+.tf-set-badge {
+  min-width: 44px;
+  text-align: center;
+  padding: 8px 10px;
+  border-radius: 12px;
+  border: 1px solid rgba(255, 255, 255, 0.14);
+  color: rgba(255, 255, 255, 0.85);
+}
+
+/* ===== BOTONES (para <a> y <button>) ===== */
+.tf-btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 10px;
+  padding: 12px 16px;
+  border-radius: 16px;
+  background: rgba(124, 58, 237, 0.9);
+  color: #fff;
+  text-decoration: none;
+  border: 1px solid rgba(124, 58, 237, 0.9);
+  cursor: pointer;
+  user-select: none;
+  transition: transform 0.08s ease, border-color 0.15s ease, background 0.15s ease;
+}
+
+.tf-btn:hover {
+  border-color: rgba(124, 58, 237, 0.9);
+  background: rgba(66, 21, 145, 0.9);
+}
+
+.tf-btn:active {
+  transform: translateY(1px);
+}
+
+.tf-btn:focus {
+  outline: none;
+}
+
+.tf-btn:focus-visible {
+  outline: 2px solid rgba(124, 58, 237, 0.9);
+  outline-offset: 2px;
+}
+
+.tf-btn-small {
+  width: auto;
+  padding: 10px 14px;
+  border-radius: 14px;
+  font-size: 14px;
+}
+
+/* ===== CONTENEDOR DE BOTONES ===== */
+.tf-actions {
+  display: flex;
+  gap: 12px;
+  flex-wrap: wrap;
+  margin-top: 18px;
+  justify-content: center;
+  align-items: center;
+}
+
+/* Nutrición: 2 columnas */
+.tf-nutri-grid {
+  display: grid;
+  grid-template-columns: 1.2fr 0.8fr;
+  gap: 16px;
+  width: 100%;
+  max-width: 1100px;
+}
+
+@media (max-width: 900px) {
+  .tf-nutri-grid {
+    grid-template-columns: 1fr;
+  }
+}
+
+.tf-macro {
+  display: block !important;
+  padding: 16px;
+  border: 1px solid rgba(255, 255, 255, 0.12);
+  border-radius: 18px;
+  margin-bottom: 14px;
+  background: rgba(255, 255, 255, 0.02);
+}
+
+.tf-macro-left {
+  opacity: 0.85;
+  font-size: 15px;
+  color: rgba(255, 255, 255, 0.88);
+}
+
+.tf-macro-right {
+  font-weight: 700;
+  font-size: 15px;
+  font-weight: 800;
+  color: #fff;
+}
+
+.tf-macro-top {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 12px;
+  margin-bottom: 10px;
+}
+
+.tf-macro-title {
+  display: block !important;
+  width: 100%;
+  font-size: 15px;
+  font-weight: 700;
+  color: #fff;
+  text-align: left;
+  line-height: 1.4;
+  margin: 0 0 10px 0;
+}
+
+.tf-macro-row {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 12px;
+}
+
+.tf-macro-name {
+  font-size: 15px;
+  color: rgba(255, 255, 255, 0.85);
+}
+
+.tf-macro-value {
+  font-size: 15px;
+  font-weight: 800;
+  color: #fff;
+}
+
+.tf-log-item {
+  display: flex;
+  justify-content: space-between;
+  gap: 12px;
+  align-items: center;
+  padding: 12px;
+  border: 1px solid rgba(255, 255, 255, 0.12);
+  border-radius: 14px;
+  margin-top: 10px;
+}
+
+.tf-progress {
+  display: block !important;
+  width: 100% !important;
+  height: 10px;
+  background: rgba(255, 255, 255, 0.08);
+  border-radius: 999px;
+  overflow: hidden;
+  margin-top: 0;
+}
+
+.tf-progress-fill {
+  display: block;
+  height: 100%;
+  border-radius: 999px;
+  background: linear-gradient(90deg, #4f46e5, #7c3aed);
+  transition: width 0.35s ease;
+}
+
+/* =========================
+   MARQUEES DASHBOARD PRO
+========================= */
+.tf-marquee {
+  width: 100%;
+  overflow: hidden;
+  position: relative;
+  margin: 150px 0;
+  white-space: nowrap;
+}
+
+.tf-marquee-track {
+  display: flex;
+  width: max-content;
+  gap: 60px;
+  animation: tf-marquee-left 30s linear infinite;
+}
+
+.tf-marquee-track.reverse {
+  animation: tf-marquee-right 30s linear infinite;
+}
+
+.tf-marquee span {
+  color: rgba(255, 255, 255, 0.9);
+  font-size: 1.4rem;
+  font-weight: 800;
+  letter-spacing: 0.22em;
+  text-transform: uppercase;
+}
+
+@keyframes tf-marquee-left {
+  0% {
+    transform: translateX(0);
+  }
+  100% {
+    transform: translateX(-50%);
+  }
+}
+
+@keyframes tf-marquee-right {
+  0% {
+    transform: translateX(-50%);
+  }
+  100% {
+    transform: translateX(0);
+  }
+}
+
+/* POPUP ALERT */
+.tf-alert-overlay {
+  position: fixed;
+  inset: 0;
+  background: rgba(0, 0, 0, 0.7);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 999;
+}
+
+.tf-alert-box {
+  background: #111;
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  border-radius: 16px;
+  padding: 24px 32px;
+  text-align: center;
+  color: white;
+  min-width: 280px;
+}
+
+.tf-alert-icon {
+  font-size: 40px;
+  color: #ff3b3b;
+  margin-bottom: 10px;
+}
+
+.tf-alert-text {
+  font-size: 16px;
+  margin-bottom: 16px;
+}
+
+.tf-nav-logo {
+  color: #fff;
+  text-decoration: none;
+  font-size: 1.4rem;
+  font-weight: 900;
+  letter-spacing: 0.04em;
+  transition: 0.2s;
+}
+
+.tf-nav-logo:hover {
+  color: #a5b4fc;
+}
+
+.tf-nav-link {
+  color: rgba(255, 255, 255, 0.8);
+  text-decoration: none;
+  font-weight: 700;
+  font-size: 1rem;
+  transition: 0.2s;
+}
+
+.tf-nav-link:hover {
+  color: #fff;
+}
+
+.tf-nav-user {
+  color: #fff;
+  font-weight: 700;
+  background: transparent;
+  border: 1px solid rgba(255, 255, 255, 0.16);
+  padding: 10px 16px;
+  border-radius: 14px;
+  transition: 0.2s;
+}
+
+.tf-nav-user:hover {
+  border-color: #4f46e5;
+  background: rgba(79, 70, 229, 0.12);
+}
+
+/* NAVBAR */
+.tf-navbar {
+  background: #000;
+  border-bottom: 1px solid #4f46e5;
+  position: sticky;
+  top: 0;
+  z-index: 100;
+}
+
+.tf-nav-logo-img img {
+  height: 90px;
+  width: auto;
+  object-fit: contain;
+  display: block;
+  transition: 0.2s;
+}
+
+.tf-nav-logo-img:hover img {
+  transform: scale(1.05);
+}
+
+.tf-nav-center {
+  display: flex;
+  align-items: center;
+  gap: 48px;
+}
+
+/* =========================
+   PROGRESS
+========================= */
+.tf-progress-shell {
+  width: 100%;
+  max-width: 1280px;
+}
+
+.tf-progress-topbar {
+  display: grid;
+  grid-template-columns: 1.2fr 1fr 1.3fr auto;
+  gap: 16px;
+  align-items: end;
+  margin-bottom: 22px;
+}
+
+.tf-progress-body {
+  display: grid;
+  grid-template-columns: 420px 1fr;
+  gap: 22px;
+  align-items: start;
+}
+
+.tf-progress-left,
+.tf-progress-right {
+  color: #fff;
+}
+
+.tf-progress-panel-title {
+  font-size: 22px;
+  font-weight: 800;
+  margin-bottom: 16px;
+  color: #fff;
+}
+
+.tf-progress-list {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+  max-height: 620px;
+  overflow: auto;
+  padding-right: 4px;
+}
+
+.tf-progress-item {
+  display: flex;
+  justify-content: space-between;
+  gap: 12px;
+  align-items: flex-start;
+  padding: 14px 16px;
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  border-radius: 18px;
+  background: rgba(255, 255, 255, 0.02);
+}
+
+.tf-progress-item-period {
+  font-weight: 800;
+  font-size: 15px;
+  color: #fff;
+  margin-bottom: 6px;
+}
+
+.tf-progress-item-sub {
+  font-size: 13px;
+  color: rgba(255, 255, 255, 0.72);
+  line-height: 1.45;
+}
+
+.tf-progress-item-diff {
+  min-width: 70px;
+  text-align: right;
+  font-weight: 800;
+  font-size: 14px;
+}
+
+.tf-progress-item-diff.up {
+  color: #7cfc98;
+}
+
+.tf-progress-item-diff.down {
+  color: #ff7272;
+}
+
+.tf-progress-empty,
+.tf-progress-chart-empty {
+  color: rgba(255, 255, 255, 0.65);
+  font-size: 14px;
+}
+
+.tf-progress-chart-box {
+  width: 100%;
+  min-height: 380px;
+  height: 380px;
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  border-radius: 26px;
+  background: rgba(255, 255, 255, 0.02);
+  padding: 16px;
+  margin-bottom: 18px;
+}
+
+.tf-progress-summary-grid {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 14px;
+}
+
+.tf-progress-summary-card {
+  padding: 16px;
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  border-radius: 18px;
+  background: rgba(255, 255, 255, 0.02);
+}
+
+.tf-progress-summary-label {
+  font-size: 13px;
+  color: rgba(255, 255, 255, 0.68);
+  margin-bottom: 8px;
+}
+
+.tf-progress-summary-value {
+  font-size: 18px;
+  font-weight: 800;
+  color: #fff;
+}
+
+.tf-pill-group {
+  display: flex;
+  gap: 10px;
+  flex-wrap: wrap;
+}
+
+.tf-pill {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.tf-pill input {
+  display: none;
+}
+
+.tf-pill span {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  min-height: 44px;
+  padding: 0 18px;
+  border-radius: 16px;
+  border: 1px solid rgba(255, 255, 255, 0.16);
+  color: #fff;
+  background: transparent;
+  cursor: pointer;
+  transition: 0.2s;
+  white-space: nowrap;
+}
+
+.tf-pill input:checked + span {
+  border-color: #4f46e5;
+  background: rgba(79, 70, 229, 0.12);
+  box-shadow: 0 0 0 2px rgba(79, 70, 229, 0.15);
+}
+
+.tf-progress-search,
+.tf-progress-mode,
+.tf-progress-period,
+.tf-progress-submit {
+  width: 100%;
+}
+
+@media (max-width: 1180px) {
+  .tf-progress-topbar {
+    grid-template-columns: 1fr;
+  }
+
+  .tf-progress-body {
+    grid-template-columns: 1fr;
+  }
+
+  .tf-progress-list {
+    max-height: none;
+  }
+}
+
+/* ===== RUTINA SEGUIR ===== */
+.tf-page-head {
+  width: 100%;
+  max-width: 1100px;
+  margin: 0 auto 22px;
+}
+
+.tf-routine-follow-wrap {
+  width: 100%;
+  max-width: 1100px;
+  display: flex;
+  flex-direction: column;
+  gap: 18px;
+}
+
+.tf-routine-day-card {
+  background: rgba(255, 255, 255, 0.03);
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  border-radius: 24px;
+  padding: 22px;
+  box-shadow: 0 8px 24px rgba(0, 0, 0, 0.18);
+}
+
+.tf-routine-day-top {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 16px;
+  flex-wrap: wrap;
+  margin-bottom: 18px;
+}
+
+.tf-routine-day-title {
+  margin: 0;
+  color: #fff;
+  font-size: 1.35rem;
+  font-weight: 800;
+}
+
+.tf-routine-day-sub {
+  margin: 6px 0 0;
+  color: rgba(255, 255, 255, 0.65);
+  font-size: 0.95rem;
+}
+
+.tf-routine-ex-list {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+.tf-routine-ex-item {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 14px 16px;
+  border-radius: 16px;
+  background: rgba(255, 255, 255, 0.02);
+  border: 1px solid rgba(255, 255, 255, 0.08);
+}
+
+.tf-routine-ex-name {
+  color: #fff;
+  font-weight: 600;
+}
+
+.tf-routine-follow-actions {
+  margin-top: 6px;
+}
+
+@media (max-width: 700px) {
+  .tf-routine-day-card {
+    padding: 18px;
+  }
+
+  .tf-routine-day-title {
+    font-size: 1.15rem;
+  }
+}
+
+/* ===== NUTRITION SETUP CLEAN ===== */
+.tf-nutrition-setup-page {
+  width: 100%;
+  max-width: 1100px;
+  margin: 0 auto;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding-top: 28px;
+}
+
+.tf-nutrition-setup-page .tf-title {
+  margin-bottom: 14px;
+  text-align: center;
+}
+
+.tf-nutrition-setup-page .tf-subtitle {
+  text-align: center;
+  max-width: 700px;
+  margin-bottom: 34px;
+}
+
+.tf-nutrition-setup-card {
+  width: 100%;
+  max-width: 920px;
+  padding: 42px 44px;
+  border-radius: 24px;
+}
+
+.tf-nutrition-setup-grid {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 16px;
+  align-items: center;
+}
+
+.tf-nutrition-setup-grid .tf-input,
+.tf-nutrition-setup-grid .tf-select {
+  width: 100%;
+  min-height: 52px;
+}
+
+.tf-nutrition-setup-actions {
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  margin-top: 26px;
+}
+
+@media (max-width: 768px) {
+  .tf-nutrition-setup-card {
+    padding: 28px 22px;
+  }
+
+  .tf-nutrition-setup-grid {
+    grid-template-columns: 1fr;
+  }
+}
+/* ===== PROFILE FIX ===== */
+
+/* Fondo negro real */
+body {
+  background: #000;
+}
+
+/* Inputs de Breeze -> estilo TrackFit */
+.tf-card input,
+.tf-card select,
+.tf-card textarea {
+  width: 100%;
+  background: transparent;
+  border: 1px solid rgba(255,255,255,.18);
+  border-radius: 14px;
+  padding: 12px 14px;
+  color: #fff;
+  margin-bottom: 14px;
+}
+
+.tf-card input:focus,
+.tf-card select:focus {
+  outline: none;
+  border-color: rgba(124,58,237,.9);
+}
+
+/* Labels */
+.tf-card label {
+  display: block;
+  margin-bottom: 6px;
+  color: rgba(255,255,255,.7);
+  font-size: 13px;
+}
+
+/* Botones Breeze -> TrackFit */
+.tf-card button {
+  margin-top: 10px;
+  padding: 10px 18px;
+  border-radius: 14px;
+  background: transparent;
+  color: #fff;
+  border: 1px solid rgba(124,58,237,.9);
+  cursor: pointer;
+  transition: .15s;
+}
+
+.tf-card button:hover {
+  background: rgba(66, 21, 145, 0.9);
+}
+
+/* Inputs disabled (email verificado etc) */
+.tf-card input[disabled] {
+  opacity: .5;
+}
+.tf-select{
+  width:100%;
+  min-height:52px;
+  padding:12px 16px;
+  border-radius:16px;
+  border:1px solid rgba(255,255,255,.18);
+  background:#0b0b0b;
+  color:#fff;
+  font-size:1rem;
+  line-height:1.2;
+  outline:none;
+  appearance:none;
+  -webkit-appearance:none;
+  -moz-appearance:none;
+  transition:border-color .15s ease, background .15s ease, box-shadow .15s ease;
+}
+
+.tf-select:hover{
+  border-color:rgba(124,58,237,.65);
+}
+
+.tf-select:focus{
+  border-color:rgba(124,58,237,.95);
+  box-shadow:0 0 0 3px rgba(124,58,237,.16);
+}
+
+.tf-select option{
+  background:#111;
+  color:#fff;
+}
+.tf-input,
+.tf-select{
+  box-sizing:border-box;
+}
+/* ===== HOME REAL ===== */
+
+.tf-home{
+  width:100%;
+  background:#000;
+}
+
+.tf-home-container{
+  width:70%;
+  margin:0 auto;
+  padding:0 clamp(16px, 2vw, 40px);
+}
+
+.tf-home-hero{
+  position:relative;
+  min-height:72vh;
+  width:70%;
+  background-size:cover;
+  background-position:center;
+  background-repeat:no-repeat;
+  display:flex;
+  align-items:center;
+}
+
+.tf-home-hero-overlay{
+  position:absolute;
+  inset:0;
+  background:linear-gradient(
+    90deg,
+    rgba(0,0,0,.82) 0%,
+    rgba(0,0,0,.55) 45%,
+    rgba(0,0,0,.45) 100%
+  );
+}
+
+.tf-home-hero-content{
+  position:relative;
+  z-index:2;
+  width:70%;
+}
+
+.tf-home-hero-box{
+  max-width:760px;
+  padding:48px 0;
+}
+
+.tf-home-kicker{
+  margin:0 0 14px;
+  color:rgba(124, 59, 237, 0.95);
+  font-size:.82rem;
+  font-weight:800;
+  letter-spacing:.16em;
+  text-transform:uppercase;
+}
+
+.tf-home-hero-title{
+  margin:0 0 18px;
+  color:#fff;
+  font-size:clamp(2.6rem, 5vw, 4.8rem);
+  line-height:1.05;
+  font-weight:900;
+}
+
+.tf-home-hero-text{
+  margin:0;
+  max-width:680px;
+  color:rgba(255,255,255,.82);
+  font-size:1.08rem;
+  line-height:1.75;
+}
+
+.tf-home-section{
+  background:#000;
+  padding:88px 0;
+  border-top:1px solid rgba(255,255,255,.06);
+}
+
+.tf-home-split{
+  display:grid;
+  grid-template-columns:1fr 1fr;
+  gap:82px;
+  align-items:center;
+}
+
+.tf-home-copy{
+  display:flex;
+  flex-direction:column;
+  align-items:flex-start;
+}
+
+.tf-home-title{
+  margin:0 0 16px;
+  color:#fff;
+  font-size:clamp(1.8rem, 3vw, 2.8rem);
+  line-height:1.15;
+  font-weight:850;
+}
+
+.tf-home-text{
+  margin:0;
+  color:rgba(255,255,255,.76);
+  font-size:1rem;
+  line-height:1.8;
+  max-width:620px;
+}
+
+.tf-home-points{
+  display:flex;
+  flex-wrap:wrap;
+  gap:12px;
+  margin-top:22px;
+}
+
+.tf-home-points span{
+  display:inline-flex;
+  align-items:center;
+  justify-content:center;
+  min-height:40px;
+  padding:0 14px;
+  border-radius:999px;
+  border:1px solid rgba(124,58,237,.6);
+  color:#fff;
+  background:rgba(124, 59, 237, 0.95);
+  font-size:.95rem;
+  font-weight:600;
+}
+
+.tf-home-btn{
+  margin-top:26px;
+}
+
+.tf-home-media{
+  width:100%;
+}
+
+.tf-home-image-placeholder{
+  width:100%;
+  min-height:500px;
+  border-radius:28px;
+  border:1px solid rgba(255,255,255,.10);
+  background:
+    linear-gradient(180deg, rgba(124,58,237,.08), rgba(255,255,255,.02));
+  color:rgba(255,255,255,.45);
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  text-align:center;
+  font-weight:700;
+  letter-spacing:.03em;
+  box-shadow:0 14px 30px rgba(0,0,0,.22);
+}
+
+@media (max-width: 980px){
+  .tf-home-container{
+    padding:0 22px;
+  }
+
+  .tf-home-hero{
+    min-height:62vh;
+  }
+
+  .tf-home-split{
+    grid-template-columns:1fr;
+    gap:28px;
+  }
+
+  .tf-home-image-placeholder{
+    min-height:400px;
+  }
+
+  .tf-home-section{
+    padding:64px 0;
+  }
+}
+/* quitar la línea entre secciones */
+.tf-home-section{
+  background:#000;
+  padding:100px 0;
+  border-top:none;
+}
+
+/* mantener también espacio generoso en la hero si quieres coherencia */
+.tf-home-hero{
+  position:relative;
+  min-height:72vh;
+  width:100%;
+  background-size:cover;
+  background-position:center;
+  background-repeat:no-repeat;
+  display:flex;
+  align-items:center;
+}
+
+/* imágenes de las secciones */
+.tf-home-image-placeholder{
+  width:100%;
+  min-height:550px;
+  border-radius:28px;
+  border:1px solid rgba(255,255,255,.10);
+  background-size:cover;
+  background-position:center;
+  background-repeat:no-repeat;
+  box-shadow:0 14px 30px rgba(0,0,0,.22);
+  color:transparent; /* por si queda texto dentro */
+  display:block;
+}
+
+/* responsive */
+@media (max-width: 980px){
+  .tf-home-section{
+    padding:70px 0;
+  }
+
+  .tf-home-image-placeholder{
+    min-height:280px;
+  }
+}
+/* =====================================================
+   SEGUIR RUTINA - UX / ACCESIBILIDAD
+===================================================== */
+
+.tf-routine-day-info{
+  display:flex;
+  align-items:center;
+  gap:14px;
+}
+
+.tf-routine-day-icon{
+  width:44px;
+  height:44px;
+
+  display:flex;
+  align-items:center;
+  justify-content:center;
+
+  border-radius:14px;
+
+  background:rgba(124,58,237,.12);
+  border:1px solid rgba(124,58,237,.35);
+
+  font-size:1.1rem;
+}
+
+.tf-start-workout-btn{
+  gap:8px;
+}
+
+.tf-btn-icon{
+  display:inline-flex;
+  align-items:center;
+  justify-content:center;
+  font-size:.9em;
+}
+
+
+/* EJERCICIO */
+
+.tf-routine-ex-item{
+  display:grid;
+  grid-template-columns:110px 1fr;
+
+  align-items:center;
+  gap:18px;
+
+  padding:10px;
+
+  border-radius:18px;
+  background:rgba(255,255,255,.02);
+  border:1px solid rgba(255,255,255,.08);
+
+  transition:
+    border-color .18s ease,
+    background .18s ease,
+    transform .18s ease;
+}
+
+.tf-routine-ex-item:hover{
+  border-color:rgba(124,58,237,.45);
+  background:rgba(124,58,237,.035);
+  transform:translateY(-1px);
+}
+
+
+/* IMAGEN */
+
+.tf-routine-ex-visual{
+  width:110px;
+  height:82px;
+
+  overflow:hidden;
+
+  border-radius:13px;
+
+  background:#111;
+  border:1px solid rgba(255,255,255,.08);
+}
+
+.tf-routine-ex-img{
+  width:100%;
+  height:100%;
+
+  object-fit:contain;
+
+  display:block;
+}
+
+.tf-routine-ex-no-image{
+  width:100%;
+  height:100%;
+
+  display:flex;
+  align-items:center;
+  justify-content:center;
+
+  color:rgba(255,255,255,.45);
+
+  font-size:1.5rem;
+}
+
+
+/* TEXTO */
+
+.tf-routine-ex-content{
+  min-width:0;
+
+  display:flex;
+  flex-direction:column;
+  gap:5px;
+}
+
+.tf-routine-ex-name{
+  color:#fff;
+  font-size:1rem;
+  font-weight:700;
+}
+
+.tf-routine-ex-help{
+  color:rgba(255,255,255,.52);
+  font-size:.82rem;
+}
+
+
+/* =====================================================
+   TABLET
+===================================================== */
+
+@media (max-width:900px){
+
+  .tf-routine-follow-wrap{
+    width:92%;
+  }
+
+  .tf-routine-day-card{
+    padding:18px;
+  }
+
+}
+
+
+/* =====================================================
+   MÓVIL
+===================================================== */
+
+@media (max-width:650px){
+
+  .tf-dashboard-spaced{
+    padding-left:14px;
+    padding-right:14px;
+  }
+
+  .tf-routine-follow-wrap{
+    width:100%;
+  }
+
+  .tf-routine-day-top{
+    align-items:stretch;
+  }
+
+  .tf-routine-day-info{
+    width:100%;
+  }
+
+  .tf-routine-day-top form{
+    width:100%;
+  }
+
+  .tf-start-workout-btn{
+    width:100%;
+  }
+
+  .tf-routine-ex-item{
+    grid-template-columns:88px 1fr;
+    gap:12px;
+  }
+
+  .tf-routine-ex-visual{
+    width:88px;
+    height:72px;
+  }
+
+  .tf-routine-ex-name{
+    font-size:.92rem;
+  }
+
+  .tf-routine-ex-help{
+    font-size:.75rem;
+  }
+
+}
+
+
+/* =====================================================
+   MÓVIL MUY PEQUEÑO
+===================================================== */
+
+@media (max-width:420px){
+
+  .tf-routine-ex-item{
+    grid-template-columns:1fr;
+  }
+
+  .tf-routine-ex-visual{
+    width:100%;
+    height:150px;
+  }
+
+}
+.tf-routine-ex-item{
+  display:grid;
+  grid-template-columns:125px 1fr;
+  align-items:center;
+  gap:20px;
+
+  padding:10px;
+
+  border-radius:18px;
+  background:rgba(255,255,255,.02);
+  border:1px solid rgba(255,255,255,.08);
+
+  transition:
+    border-color .18s ease,
+    background .18s ease,
+    transform .18s ease;
+}
+
+.tf-routine-ex-visual{
+  width:125px;
+  height:125px;
+
+  overflow:hidden;
+  border-radius:13px;
+
+  background:#111;
+  border:1px solid rgba(255,255,255,.08);
+
+  display:flex;
+  align-items:center;
+  justify-content:center;
+}
+
+.tf-routine-ex-img{
+  width:100%;
+  height:100%;
+
+  object-fit:contain;
+  display:block;
+}
+@media (max-width:650px){
+
+  .tf-routine-ex-item{
+    grid-template-columns:105px 1fr;
+    gap:14px;
+  }
+
+  .tf-routine-ex-visual{
+    width:105px;
+    height:105px;
+  }
+
+}
+
+.tf-days{
+  width:100%;
+
+  display:grid;
+  grid-template-columns:repeat(4, minmax(120px, 1fr));
+
+  gap:12px;
+
+  margin-top:12px;
+}
+
+
+/* contenedor de cada día */
+.tf-day{
+  display:block;
+  cursor:pointer;
+}
+
+
+/* ocultamos el checkbox real */
+.tf-day input{
+  position:absolute;
+  opacity:0;
+  pointer-events:none;
+}
+
+
+/* botón visible */
+.tf-day span{
+  width:100%;
+  min-height:46px;
+
+  display:flex;
+  align-items:center;
+  justify-content:center;
+
+  padding:10px 16px;
+
+  border-radius:14px;
+
+  background:#0b0b0b;
+  border:1px solid rgba(255,255,255,.16);
+
+  color:rgba(255,255,255,.78);
+
+  font-size:.92rem;
+  font-weight:600;
+
+  transition:
+    border-color .18s ease,
+    background .18s ease,
+    color .18s ease,
+    transform .08s ease;
+}
+
+
+/* hover */
+.tf-day:hover span{
+  border-color:rgba(124,58,237,.65);
+  color:#fff;
+}
+
+
+/* día seleccionado */
+.tf-day input:checked + span{
+  background:rgba(124,58,237,.18);
+  border-color:rgba(124,58,237,.95);
+  color:#fff;
+
+  box-shadow:
+    0 0 0 2px rgba(124,58,237,.10);
+}
+
+
+/* pulsación */
+.tf-day:active span{
+  transform:translateY(1px);
+}
+
+
+/* tablet */
+@media (max-width:900px){
+  .tf-days{
+    grid-template-columns:repeat(3, minmax(110px, 1fr));
+  }
+}
+
+
+/* móvil */
+@media (max-width:600px){
+  .tf-days{
+    grid-template-columns:repeat(2, minmax(0, 1fr));
+    gap:10px;
+  }
+
+  .tf-day span{
+    min-height:44px;
+    padding:9px 12px;
+    font-size:.88rem;
+  }
+}
+
+
+/* móvil pequeño */
+@media (max-width:380px){
+  .tf-days{
+    grid-template-columns:1fr;
+  }
+}
+/* =========================================================
+   WORKOUT / ENTRENO
+========================================================= */
+
+.tf-workout-header{
+  width:100%;
+  max-width:980px;
+
+  display:flex;
+  align-items:flex-end;
+  justify-content:space-between;
+  gap:18px;
+
+  margin-bottom:18px;
+}
+
+.tf-workout-card{
+  max-width:980px;
+  width:100%;
+}
+
+
+/* =========================================================
+   TIMER
+========================================================= */
+
+.tf-workout-timer{
+  display:flex;
+  align-items:center;
+  gap:12px;
+
+  padding:12px 16px;
+
+  border-radius:16px;
+
+  background:rgba(124,58,237,.10);
+  border:1px solid rgba(124,58,237,.45);
+
+  color:#fff;
+}
+
+.tf-workout-timer-icon{
+  font-size:1.35rem;
+}
+
+.tf-workout-timer > div{
+  display:flex;
+  flex-direction:column;
+  gap:2px;
+}
+
+.tf-workout-timer-label{
+  color:rgba(255,255,255,.58);
+  font-size:.75rem;
+  font-weight:600;
+  text-transform:uppercase;
+  letter-spacing:.06em;
+}
+
+.tf-workout-timer strong{
+  font-size:1.15rem;
+  font-weight:800;
+}
+
+
+/* =========================================================
+   BLOQUES DE EJERCICIO
+========================================================= */
+
+.tf-ex-block{
+  padding:20px;
+
+  border-radius:20px;
+
+  background:rgba(255,255,255,.025);
+  border:1px solid rgba(255,255,255,.09);
+
+  margin-bottom:18px;
+}
+
+.tf-ex-head{
+  display:flex;
+  align-items:center;
+  justify-content:space-between;
+  gap:16px;
+
+  margin-bottom:18px;
+}
+
+.tf-ex-title{
+  color:#fff;
+  font-size:1.1rem;
+  font-weight:800;
+}
+
+.tf-ex-description{
+  margin-top:5px;
+
+  color:rgba(255,255,255,.56);
+  font-size:.82rem;
+  line-height:1.5;
+}
+
+
+/* =========================================================
+   CABECERA SERIES
+========================================================= */
+
+.tf-set-labels{
+  display:grid;
+  grid-template-columns:60px 1fr 1fr auto;
+  gap:12px;
+
+  margin-bottom:8px;
+  padding:0 4px;
+
+  color:rgba(255,255,255,.46);
+
+  font-size:.75rem;
+  font-weight:700;
+
+  text-transform:uppercase;
+  letter-spacing:.05em;
+}
+
+
+/* =========================================================
+   FILA DE SERIE
+========================================================= */
+
+.tf-set-row{
+  display:grid;
+  grid-template-columns:60px minmax(110px,1fr) minmax(140px,1fr) auto;
+  gap:12px;
+
+  align-items:center;
+
+  margin-bottom:10px;
+}
+
+.tf-set-badge{
+  width:46px;
+  height:46px;
+
+  display:flex;
+  align-items:center;
+  justify-content:center;
+
+  border-radius:14px;
+
+  color:#fff;
+
+  font-weight:800;
+
+  background:rgba(124,58,237,.13);
+  border:1px solid rgba(124,58,237,.50);
+}
+
+
+/* =========================================================
+   INPUT DE PESO + KG
+========================================================= */
+
+.tf-weight-input-wrap{
+  position:relative;
+  width:100%;
+}
+
+.tf-weight-input-wrap .tf-input{
+  width:100%;
+  padding-right:42px;
+}
+
+.tf-input-unit{
+  position:absolute;
+
+  right:14px;
+  top:50%;
+
+  transform:translateY(-50%);
+
+  pointer-events:none;
+
+  color:rgba(255,255,255,.45);
+  font-size:.82rem;
+  font-weight:700;
+}
+
+
+/* =========================================================
+   GUARDAR SERIES
+========================================================= */
+
+.tf-workout-save-area{
+  display:flex;
+  justify-content:flex-end;
+
+  margin-top:20px;
+}
+
+
+/* =========================================================
+   FINALIZAR ENTRENAMIENTO
+========================================================= */
+
+.tf-workout-finish-section{
+  margin-top:32px;
+  padding-top:26px;
+
+  border-top:1px solid rgba(255,255,255,.10);
+}
+
+.tf-workout-finish-head{
+  display:flex;
+  align-items:flex-start;
+  gap:14px;
+
+  margin-bottom:22px;
+}
+
+.tf-workout-finish-icon{
+  width:46px;
+  height:46px;
+
+  flex-shrink:0;
+
+  display:flex;
+  align-items:center;
+  justify-content:center;
+
+  border-radius:15px;
+
+  background:rgba(124,58,237,.12);
+  border:1px solid rgba(124,58,237,.40);
+
+  font-size:1.25rem;
+}
+
+.tf-workout-finish-head h2{
+  margin:0 0 5px;
+
+  color:#fff;
+  font-size:1.15rem;
+  font-weight:800;
+}
+
+.tf-workout-finish-head p{
+  margin:0;
+
+  max-width:650px;
+
+  color:rgba(255,255,255,.58);
+  font-size:.87rem;
+  line-height:1.55;
+}
+
+
+/* =========================================================
+   INTENSIDAD
+========================================================= */
+
+.tf-intensity-fieldset{
+  padding:0;
+  margin:0;
+
+  border:0;
+}
+
+.tf-intensity-grid{
+  display:grid;
+  grid-template-columns:repeat(3, minmax(0,1fr));
+
+  gap:12px;
+
+  margin-top:10px;
+}
+
+.tf-intensity-option{
+  display:block;
+
+  cursor:pointer;
+}
+
+.tf-intensity-option input{
+  position:absolute;
+  opacity:0;
+  pointer-events:none;
+}
+
+.tf-intensity-card{
+  height:100%;
+
+  display:flex;
+  flex-direction:column;
+
+  align-items:flex-start;
+
+  padding:18px;
+
+  border-radius:18px;
+
+  background:rgba(255,255,255,.025);
+  border:1px solid rgba(255,255,255,.10);
+
+  transition:
+    border-color .18s ease,
+    background .18s ease,
+    transform .10s ease,
+    box-shadow .18s ease;
+}
+
+.tf-intensity-option:hover .tf-intensity-card{
+  border-color:rgba(124,58,237,.55);
+  background:rgba(124,58,237,.045);
+}
+
+.tf-intensity-option input:checked + .tf-intensity-card{
+  border-color:rgba(124,58,237,.95);
+
+  background:rgba(124,58,237,.13);
+
+  box-shadow:
+    0 0 0 2px rgba(124,58,237,.10);
+}
+
+.tf-intensity-option:active .tf-intensity-card{
+  transform:translateY(1px);
+}
+
+.tf-intensity-icon{
+  display:block;
+
+  margin-bottom:10px;
+
+  font-size:1.45rem;
+}
+
+.tf-intensity-card strong{
+  color:#fff;
+
+  margin-bottom:6px;
+
+  font-size:1rem;
+}
+
+.tf-intensity-card small{
+  color:rgba(255,255,255,.55);
+
+  font-size:.79rem;
+  line-height:1.5;
+}
+
+
+/* =========================================================
+   FINALIZAR
+========================================================= */
+
+.tf-finish-btn{
+  margin-top:20px;
+
+  border-color:rgba(124,58,237,.95);
+  background:rgba(124,58,237,.95);
+}
+
+.tf-finish-btn:hover{
+  background:rgba(98,42,195,.95);
+}
+
+
+/* =========================================================
+   VOLVER
+========================================================= */
+
+.tf-workout-back{
+  margin-top:20px;
+}
+
+
+/* =========================================================
+   ESTADO VACÍO
+========================================================= */
+
+.tf-workout-empty{
+  display:flex;
+  align-items:center;
+  gap:14px;
+
+  padding:18px;
+
+  border-radius:18px;
+
+  background:rgba(255,255,255,.025);
+  border:1px solid rgba(255,255,255,.10);
+}
+
+.tf-workout-empty-icon{
+  width:48px;
+  height:48px;
+
+  flex-shrink:0;
+
+  display:flex;
+  align-items:center;
+  justify-content:center;
+
+  border-radius:15px;
+
+  background:rgba(124,58,237,.12);
+  border:1px solid rgba(124,58,237,.4);
+}
+
+.tf-workout-empty strong{
+  color:#fff;
+}
+
+.tf-workout-empty p{
+  margin:5px 0 0;
+
+  color:rgba(255,255,255,.55);
+}
+
+
+/* =========================================================
+   TABLET
+========================================================= */
+
+@media (max-width:800px){
+
+  .tf-workout-header{
+    align-items:flex-start;
+    flex-direction:column;
+  }
+
+  .tf-set-labels{
+    grid-template-columns:50px 1fr 1fr auto;
+  }
+
+  .tf-set-row{
+    grid-template-columns:50px minmax(90px,1fr) minmax(110px,1fr) auto;
+  }
+
+  .tf-set-badge{
+    width:42px;
+    height:42px;
+  }
+
+}
+
+
+/* =========================================================
+   MÓVIL
+========================================================= */
+
+@media (max-width:620px){
+
+  .tf-workout-header{
+    width:100%;
+  }
+
+  .tf-workout-timer{
+    width:100%;
+    justify-content:center;
+  }
+
+
+  .tf-ex-block{
+    padding:15px;
+  }
+
+
+  .tf-ex-head{
+    flex-direction:column;
+    align-items:stretch;
+  }
+
+  .tf-add-set{
+    width:100%;
+  }
+
+
+  /* ocultamos títulos porque cada input
+     ya tiene información accesible */
+  .tf-set-labels{
+    display:none;
+  }
+
+
+  .tf-set-row{
+    grid-template-columns:42px 1fr 1fr;
+    gap:9px;
+
+    padding:10px 0;
+
+    border-bottom:1px solid rgba(255,255,255,.06);
+  }
+
+  .tf-set-row:last-child{
+    border-bottom:0;
+  }
+
+
+  .tf-set-badge{
+    width:40px;
+    height:40px;
+  }
+
+
+  .tf-remove-set{
+    grid-column:2 / 4;
+
+    width:100%;
+  }
+
+
+  .tf-intensity-grid{
+    grid-template-columns:1fr;
+  }
+
+  .tf-intensity-card{
+    flex-direction:row;
+    align-items:center;
+
+    gap:12px;
+  }
+
+  .tf-intensity-icon{
+    margin:0;
+
+    width:34px;
+
+    flex-shrink:0;
+
+    text-align:center;
+  }
+
+  .tf-intensity-card strong{
+    min-width:58px;
+
+    margin:0;
+  }
+
+  .tf-intensity-card small{
+    flex:1;
+  }
+
+
+  .tf-workout-save-area{
+    justify-content:stretch;
+  }
+
+  .tf-workout-save-area .tf-btn,
+  .tf-finish-btn{
+    width:100%;
+  }
+
+}
+
+
+/* =========================================================
+   MÓVIL MUY PEQUEÑO
+========================================================= */
+
+@media (max-width:420px){
+
+  .tf-set-row{
+    grid-template-columns:40px 1fr;
+  }
+
+  .tf-set-row > .tf-input{
+    grid-column:2;
+  }
+
+  .tf-weight-input-wrap{
+    grid-column:2;
+  }
+
+  .tf-remove-set{
+    grid-column:2;
+  }
+
+  .tf-remove-text{
+    display:inline;
+  }
+
+}
+/* =========================================================
+   NUTRICIÓN - BALANCE ENERGÉTICO
+========================================================= */
+
+.tf-nutrition-head{
+  width:100%;
+  max-width:1100px;
+
+  display:flex;
+  align-items:flex-end;
+  justify-content:space-between;
+  gap:18px;
+
+  margin-bottom:20px;
+}
+
+.tf-nutrition-date-badge{
+  display:flex;
+  align-items:center;
+  gap:8px;
+
+  padding:10px 14px;
+
+  border-radius:14px;
+
+  color:rgba(255,255,255,.78);
+  background:rgba(255,255,255,.035);
+  border:1px solid rgba(255,255,255,.10);
+
+  font-size:.85rem;
+  font-weight:600;
+}
+
+
+.tf-nutrition-layout{
+  width:100%;
+  max-width:1100px;
+
+  display:flex;
+  flex-direction:column;
+  gap:20px;
+}
+
+
+/* =========================================================
+   CABECERAS DE SECCIÓN
+========================================================= */
+
+.tf-section-heading{
+  display:flex;
+  align-items:flex-start;
+  gap:14px;
+
+  margin-bottom:22px;
+}
+
+.tf-section-heading-icon{
+  width:46px;
+  height:46px;
+
+  flex-shrink:0;
+
+  display:flex;
+  align-items:center;
+  justify-content:center;
+
+  border-radius:15px;
+
+  background:rgba(124,58,237,.12);
+  border:1px solid rgba(124,58,237,.4);
+
+  font-size:1.25rem;
+}
+
+.tf-section-heading h2{
+  margin:0 0 5px;
+
+  color:#fff;
+
+  font-size:1.2rem;
+  font-weight:800;
+}
+
+.tf-section-heading p{
+  margin:0;
+
+  color:rgba(255,255,255,.56);
+
+  font-size:.86rem;
+  line-height:1.5;
+}
+
+
+/* =========================================================
+   BALANCE ENERGÉTICO
+========================================================= */
+
+.tf-energy-card{
+  padding:24px;
+}
+
+.tf-energy-grid{
+  display:grid;
+  grid-template-columns:repeat(4,minmax(0,1fr));
+
+  gap:12px;
+}
+
+.tf-energy-item{
+  display:flex;
+  align-items:center;
+  gap:12px;
+
+  min-height:92px;
+
+  padding:16px;
+
+  border-radius:18px;
+
+  background:rgba(255,255,255,.025);
+  border:1px solid rgba(255,255,255,.08);
+}
+
+.tf-energy-item-main{
+  background:rgba(124,58,237,.11);
+  border-color:rgba(124,58,237,.48);
+}
+
+.tf-energy-icon{
+  width:38px;
+  height:38px;
+
+  flex-shrink:0;
+
+  display:flex;
+  align-items:center;
+  justify-content:center;
+
+  border-radius:12px;
+
+  background:rgba(124,58,237,.10);
+
+  font-size:1.1rem;
+}
+
+.tf-energy-item > div{
+  min-width:0;
+
+  display:flex;
+  flex-direction:column;
+  gap:3px;
+}
+
+.tf-energy-label{
+  color:rgba(255,255,255,.53);
+
+  font-size:.76rem;
+  font-weight:650;
+}
+
+.tf-energy-item strong{
+  color:#fff;
+
+  font-size:1rem;
+  font-weight:800;
+}
+
+.tf-energy-item small{
+  color:rgba(255,255,255,.42);
+
+  font-size:.68rem;
+}
+
+
+/* =========================================================
+   PASOS
+========================================================= */
+
+.tf-steps-box{
+  margin-top:20px;
+
+  padding:18px;
+
+  border-radius:18px;
+
+  background:rgba(255,255,255,.02);
+  border:1px solid rgba(255,255,255,.08);
+}
+
+.tf-steps-info{
+  display:flex;
+  align-items:flex-start;
+  gap:12px;
+
+  margin-bottom:16px;
+}
+
+.tf-steps-icon{
+  width:42px;
+  height:42px;
+
+  flex-shrink:0;
+
+  display:flex;
+  align-items:center;
+  justify-content:center;
+
+  border-radius:14px;
+
+  background:rgba(124,58,237,.10);
+  border:1px solid rgba(124,58,237,.30);
+}
+
+.tf-steps-info strong{
+  color:#fff;
+
+  font-size:.95rem;
+}
+
+.tf-steps-info p{
+  margin:4px 0 0;
+
+  color:rgba(255,255,255,.52);
+
+  font-size:.8rem;
+  line-height:1.45;
+}
+
+
+.tf-steps-form{
+  display:grid;
+  grid-template-columns:minmax(160px,1fr) auto;
+
+  gap:10px;
+}
+
+.tf-steps-form .tf-input{
+  width:100%;
+}
+
+.tf-steps-help{
+  display:block;
+
+  margin-top:9px;
+
+  color:rgba(255,255,255,.40);
+
+  font-size:.72rem;
+}
+
+
+/* =========================================================
+   RESUMEN NUTRICIONAL
+========================================================= */
+
+.tf-nutrition-summary-card{
+  padding:24px;
+}
+
+.tf-nutrition-summary-grid{
+  display:grid;
+  grid-template-columns:repeat(4,minmax(0,1fr));
+
+  gap:12px;
+}
+
+.tf-nutrition-stat{
+  display:flex;
+  align-items:center;
+  gap:12px;
+
+  min-height:86px;
+
+  padding:15px;
+
+  border-radius:17px;
+
+  background:rgba(255,255,255,.025);
+  border:1px solid rgba(255,255,255,.08);
+}
+
+.tf-nutrition-stat-icon{
+  width:38px;
+  height:38px;
+
+  flex-shrink:0;
+
+  display:flex;
+  align-items:center;
+  justify-content:center;
+
+  border-radius:12px;
+
+  background:rgba(124,58,237,.10);
+
+  font-size:1rem;
+}
+
+.tf-nutrition-stat > div{
+  min-width:0;
+
+  display:flex;
+  flex-direction:column;
+  gap:4px;
+}
+
+.tf-nutrition-stat-label{
+  color:rgba(255,255,255,.50);
+
+  font-size:.75rem;
+}
+
+.tf-nutrition-stat strong{
+  color:#fff;
+
+  font-size:.9rem;
+}
+
+
+/* =========================================================
+   CALORÍAS RESTANTES
+========================================================= */
+
+.tf-calorie-remaining{
+  display:flex;
+  align-items:center;
+  gap:12px;
+
+  margin-top:18px;
+
+  padding:15px;
+
+  border-radius:17px;
+
+  background:rgba(124,58,237,.08);
+  border:1px solid rgba(124,58,237,.30);
+}
+
+.tf-calorie-remaining-icon{
+  width:40px;
+  height:40px;
+
+  flex-shrink:0;
+
+  display:flex;
+  align-items:center;
+  justify-content:center;
+
+  border-radius:13px;
+
+  background:rgba(124,58,237,.12);
+}
+
+.tf-calorie-remaining > div{
+  display:flex;
+  flex-direction:column;
+  gap:3px;
+}
+
+.tf-calorie-remaining span{
+  color:rgba(255,255,255,.55);
+
+  font-size:.76rem;
+}
+
+.tf-calorie-remaining strong{
+  color:#fff;
+
+  font-size:1rem;
+}
+
+
+/* =========================================================
+   ACCIONES
+========================================================= */
+
+.tf-nutrition-actions{
+  margin-top:20px;
+
+  display:flex;
+  flex-wrap:wrap;
+
+  gap:10px;
+}
+
+
+/* =========================================================
+   TABLET
+========================================================= */
+
+@media (max-width:900px){
+
+  .tf-energy-grid,
+  .tf-nutrition-summary-grid{
+    grid-template-columns:repeat(2,minmax(0,1fr));
+  }
+
+}
+
+
+/* =========================================================
+   MÓVIL
+========================================================= */
+
+@media (max-width:600px){
+
+  .tf-nutrition-head{
+    flex-direction:column;
+    align-items:flex-start;
+  }
+
+  .tf-nutrition-date-badge{
+    width:100%;
+
+    justify-content:center;
+  }
+
+
+  .tf-energy-card,
+  .tf-nutrition-summary-card{
+    padding:17px;
+  }
+
+
+  .tf-energy-grid,
+  .tf-nutrition-summary-grid{
+    grid-template-columns:1fr;
+  }
+
+
+  .tf-energy-item,
+  .tf-nutrition-stat{
+    min-height:auto;
+  }
+
+
+  .tf-steps-form{
+    grid-template-columns:1fr;
+  }
+
+  .tf-steps-form .tf-btn{
+    width:100%;
+  }
+
+
+  .tf-nutrition-actions{
+    flex-direction:column;
+  }
+
+  .tf-nutrition-actions .tf-btn{
+    width:100%;
+  }
+
+}
+/* =========================================================
+   TOASTS / AVISOS
+========================================================= */
+
+.tf-toast{
+  position:fixed;
+
+  top:90px;
+  right:24px;
+
+  z-index:9999;
+
+  width:min(390px, calc(100vw - 32px));
+
+  display:flex;
+  align-items:flex-start;
+  gap:12px;
+
+  padding:16px;
+
+  border-radius:18px;
+
+  color:#fff;
+
+  background:#111;
+
+  box-shadow:
+    0 18px 50px rgba(0,0,0,.45);
+
+  animation:tfToastIn .28s ease;
+}
+
+.tf-toast-success{
+  border:1px solid rgba(124,58,237,.75);
+}
+
+.tf-toast-error{
+  border:1px solid rgba(239,68,68,.75);
+}
+
+.tf-toast-icon{
+  width:38px;
+  height:38px;
+
+  flex-shrink:0;
+
+  display:flex;
+  align-items:center;
+  justify-content:center;
+
+  border-radius:12px;
+
+  background:rgba(124,58,237,.13);
+
+  font-size:1.1rem;
+}
+
+.tf-toast-error .tf-toast-icon{
+  background:rgba(239,68,68,.12);
+}
+
+.tf-toast-content{
+  flex:1;
+
+  display:flex;
+  flex-direction:column;
+  gap:4px;
+}
+
+.tf-toast-content strong{
+  font-size:.95rem;
+  font-weight:800;
+}
+
+.tf-toast-content span{
+  color:rgba(255,255,255,.68);
+
+  font-size:.82rem;
+  line-height:1.45;
+}
+
+.tf-toast-close{
+  border:0;
+  background:transparent;
+
+  color:rgba(255,255,255,.55);
+
+  font-size:1.3rem;
+  line-height:1;
+
+  cursor:pointer;
+
+  padding:2px 5px;
+}
+
+.tf-toast-close:hover{
+  color:#fff;
+}
+
+.tf-toast-hide{
+  opacity:0;
+  transform:translateY(-8px);
+
+  transition:
+    opacity .3s ease,
+    transform .3s ease;
+}
+
+@keyframes tfToastIn{
+  from{
+    opacity:0;
+    transform:translateY(-10px);
+  }
+
+  to{
+    opacity:1;
+    transform:translateY(0);
+  }
+}
+
+
+/* móvil */
+@media (max-width:600px){
+
+  .tf-toast{
+    top:78px;
+
+    left:16px;
+    right:16px;
+
+    width:auto;
+  }
+
+}
+
+/* =========================================================
+   TRACKFIT - ONBOARDING / CONFIGURACIÓN DE PERFIL
+========================================================= */
+
+.tf-nutrition-setup-page{
+  width: min(100%, 1050px);
+  margin: 0 auto;
+  padding: 30px 20px 70px;
+}
+
+
+/* =========================================================
+   CABECERA
+========================================================= */
+
+.tf-onboarding-head{
+  width: 100%;
+  max-width: 760px;
+  margin: 0 auto 34px;
+  text-align: center;
+}
+
+.tf-onboarding-icon{
+  width: 64px;
+  height: 64px;
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  margin: 0 auto 16px;
+
+  border-radius: 20px;
+
+  background: rgba(124, 58, 237, .14);
+  border: 1px solid rgba(124, 58, 237, .35);
+
+  font-size: 30px;
+}
+
+.tf-onboarding-head .tf-title{
+  margin-bottom: 10px;
+}
+
+.tf-onboarding-head .tf-subtitle{
+  max-width: 650px;
+  margin-left: auto;
+  margin-right: auto;
+
+  line-height: 1.6;
+}
+
+
+/* =========================================================
+   BLOQUES EXPLICATIVOS
+========================================================= */
+
+.tf-onboarding-info{
+  width: 100%;
+
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 14px;
+
+  margin-bottom: 22px;
+}
+
+.tf-onboarding-info-item{
+  display: flex;
+  align-items: center;
+  gap: 13px;
+
+  min-height: 90px;
+
+  padding: 16px 18px;
+
+  border-radius: 18px;
+
+  background: rgba(255, 255, 255, .025);
+  border: 1px solid rgba(255, 255, 255, .08);
+}
+
+.tf-onboarding-info-item > span{
+  width: 44px;
+  height: 44px;
+
+  flex-shrink: 0;
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  border-radius: 14px;
+
+  background: rgba(124, 58, 237, .12);
+
+  font-size: 21px;
+}
+
+.tf-onboarding-info-item div{
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+}
+
+.tf-onboarding-info-item strong{
+  color: #fff;
+  font-size: .94rem;
+}
+
+.tf-onboarding-info-item small{
+  color: rgba(255, 255, 255, .58);
+
+  font-size: .78rem;
+  line-height: 1.4;
+}
+
+
+/* =========================================================
+   TARJETA DEL FORMULARIO
+========================================================= */
+
+.tf-nutrition-setup-card{
+  width: 100%;
+  max-width: none;
+
+  padding: 30px;
+
+  border-radius: 24px;
+}
+
+.tf-onboarding-form-head{
+  margin-bottom: 26px;
+}
+
+.tf-onboarding-form-head h2{
+  margin: 0 0 6px;
+
+  color: #fff;
+
+  font-size: 1.25rem;
+  font-weight: 800;
+}
+
+.tf-onboarding-form-head p{
+  margin: 0;
+
+  color: rgba(255, 255, 255, .6);
+
+  font-size: .9rem;
+  line-height: 1.5;
+}
+
+
+/* =========================================================
+   GRID DE CAMPOS
+========================================================= */
+
+.tf-nutrition-setup-grid{
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+
+  gap: 22px 20px;
+
+  width: 100%;
+}
+
+.tf-onboarding-field{
+  min-width: 0;
+
+  display: flex;
+  flex-direction: column;
+
+  gap: 9px;
+}
+
+.tf-onboarding-field .tf-label{
+  display: flex;
+  align-items: center;
+
+  gap: 7px;
+
+  margin: 0;
+
+  color: rgba(255, 255, 255, .82);
+
+  font-size: .85rem;
+  font-weight: 700;
+}
+
+.tf-onboarding-field .tf-label span{
+  font-size: 1rem;
+}
+
+
+/* =========================================================
+   INPUTS Y SELECTS
+========================================================= */
+
+.tf-onboarding-field .tf-input,
+.tf-onboarding-field .tf-select{
+  width: 100%;
+  min-height: 50px;
+
+  margin: 0;
+
+  padding: 0 15px;
+
+  border-radius: 14px;
+
+  background: rgba(255, 255, 255, .045);
+
+  border: 1px solid rgba(255, 255, 255, .11);
+
+  color: #fff;
+
+  transition:
+    border-color .15s ease,
+    background .15s ease,
+    box-shadow .15s ease;
+}
+
+.tf-onboarding-field .tf-input:hover,
+.tf-onboarding-field .tf-select:hover{
+  border-color: rgba(124, 58, 237, .55);
+}
+
+.tf-onboarding-field .tf-input:focus,
+.tf-onboarding-field .tf-select:focus{
+  outline: none;
+
+  border-color: #7c3aed;
+
+  background: rgba(124, 58, 237, .06);
+
+  box-shadow:
+    0 0 0 3px rgba(124, 58, 237, .12);
+}
+
+.tf-onboarding-field .tf-input::placeholder{
+  color: rgba(255, 255, 255, .35);
+}
+
+
+/* Opciones del select */
+
+.tf-onboarding-field .tf-select option{
+  background: #111;
+  color: #fff;
+}
+
+
+/* =========================================================
+   UNIDADES CM / KG
+========================================================= */
+
+.tf-onboarding-input-unit{
+  position: relative;
+  width: 100%;
+}
+
+.tf-onboarding-input-unit .tf-input{
+  padding-right: 55px;
+}
+
+.tf-onboarding-input-unit > span{
+  position: absolute;
+
+  right: 15px;
+  top: 50%;
+
+  transform: translateY(-50%);
+
+  color: rgba(255, 255, 255, .45);
+
+  font-size: .82rem;
+  font-weight: 700;
+
+  pointer-events: none;
+}
+
+
+/* =========================================================
+   NOTA INFORMATIVA
+========================================================= */
+
+.tf-onboarding-note{
+  display: flex;
+  align-items: flex-start;
+
+  gap: 11px;
+
+  margin-top: 24px;
+
+  padding: 14px 16px;
+
+  border-radius: 15px;
+
+  background: rgba(124, 58, 237, .07);
+  border: 1px solid rgba(124, 58, 237, .18);
+}
+
+.tf-onboarding-note > span{
+  flex-shrink: 0;
+
+  margin-top: 1px;
+
+  font-size: 16px;
+}
+
+.tf-onboarding-note p{
+  margin: 0;
+
+  color: rgba(255, 255, 255, .62);
+
+  font-size: .82rem;
+  line-height: 1.55;
+}
+
+
+/* =========================================================
+   BOTÓN
+========================================================= */
+
+.tf-nutrition-setup-actions{
+  display: flex;
+  justify-content: center;
+
+  margin-top: 28px;
+}
+
+.tf-onboarding-submit{
+  min-width: 230px;
+
+  padding: 13px 22px;
+
+  background: #7c3aed;
+
+  border-color: #7c3aed;
+
+  font-weight: 800;
+}
+
+.tf-onboarding-submit:hover{
+  background: #6d28d9;
+
+  border-color: #8b5cf6;
+
+  transform: translateY(-1px);
+}
+
+.tf-onboarding-submit:active{
+  transform: translateY(0);
+}
+
+
+/* =========================================================
+   TABLET
+========================================================= */
+
+@media (max-width: 850px){
+
+  .tf-nutrition-setup-page{
+    width: 100%;
+    padding: 25px 18px 60px;
+  }
+
+  .tf-onboarding-info{
+    grid-template-columns: 1fr;
+  }
+
+  .tf-onboarding-info-item{
+    min-height: auto;
+  }
+
+}
+
+
+/* =========================================================
+   MÓVIL
+========================================================= */
+
+@media (max-width: 650px){
+
+  .tf-nutrition-setup-page{
+    padding:
+      20px
+      14px
+      45px;
+  }
+
+
+  .tf-onboarding-head{
+    margin-bottom: 26px;
+  }
+
+
+  .tf-onboarding-icon{
+    width: 56px;
+    height: 56px;
+
+    border-radius: 17px;
+
+    font-size: 25px;
+  }
+
+
+  .tf-onboarding-head .tf-title{
+    font-size: 1.75rem;
+  }
+
+
+  .tf-onboarding-head .tf-subtitle{
+    font-size: .9rem;
+  }
+
+
+  .tf-onboarding-info{
+    gap: 10px;
+
+    margin-bottom: 16px;
+  }
+
+
+  .tf-onboarding-info-item{
+    padding: 14px;
+  }
+
+
+  .tf-nutrition-setup-card{
+    padding: 20px 16px;
+
+    border-radius: 20px;
+  }
+
+
+  .tf-nutrition-setup-grid{
+    grid-template-columns: 1fr;
+
+    gap: 18px;
+  }
+
+
+  .tf-onboarding-field .tf-input,
+  .tf-onboarding-field .tf-select{
+    min-height: 52px;
+
+    font-size: 16px;
+  }
+
+
+  .tf-onboarding-note{
+    margin-top: 20px;
+  }
+
+
+  .tf-nutrition-setup-actions{
+    margin-top: 22px;
+  }
+
+
+  .tf-onboarding-submit{
+    width: 100%;
+    min-width: 0;
+
+    min-height: 52px;
+  }
+
+}
+
+
+/* =========================================================
+   PANTALLAS MUY PEQUEÑAS
+========================================================= */
+
+@media (max-width: 380px){
+
+  .tf-nutrition-setup-page{
+    padding-left: 10px;
+    padding-right: 10px;
+  }
+
+  .tf-onboarding-info-item{
+    align-items: flex-start;
+  }
+
+  .tf-onboarding-info-item > span{
+    width: 40px;
+    height: 40px;
+  }
+
+}
+.tf-rest-fieldset{
+  margin-top:26px;
+}
+
+.tf-rest-help{
+  margin:6px 0 12px;
+  color:rgba(255,255,255,.52);
+  font-size:.82rem;
+  line-height:1.5;
+}
+
+.tf-rest-grid{
+  display:grid;
+  grid-template-columns:repeat(5,minmax(0,1fr));
+  gap:10px;
+}
+
+@media (max-width:900px){
+  .tf-rest-grid{
+    grid-template-columns:repeat(3,minmax(0,1fr));
+  }
+}
+
+@media (max-width:600px){
+  .tf-rest-grid{
+    grid-template-columns:1fr;
+  }
+}
+/* =========================================================
+   RUTINAS PREDEFINIDAS
+========================================================= */
+
+.tf-predefined-header{
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+
+  width: 100%;
+  margin-bottom: 42px;
+
+  text-align: center;
+}
+
+.tf-predefined-header > div{
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+
+  width: 100%;
+}
+
+.tf-predefined-header .tf-title{
+  margin-bottom: 16px;
+}
+
+.tf-predefined-header .tf-subtitle{
+  width: 100%;
+  max-width: 750px;
+  margin: 0 auto;
+
+  text-align: center;
+  line-height: 1.6;
+}
+.tf-predefined-grid{
+  display:grid;
+  grid-template-columns:repeat(3,minmax(0,1fr));
+  gap:20px;
+}
+
+.tf-predefined-card{
+  display:flex;
+  flex-direction:column;
+  padding:24px;
+  border:1px solid rgba(255,255,255,.08);
+  border-radius:18px;
+  background:rgba(255,255,255,.035);
+  transition:
+    transform .2s ease,
+    border-color .2s ease,
+    background .2s ease;
+}
+
+.tf-predefined-card:hover{
+  transform:translateY(-4px);
+  border-color:rgba(255,255,255,.18);
+  background:rgba(255,255,255,.055);
+}
+
+.tf-predefined-card-top{
+  display:flex;
+  justify-content:space-between;
+  align-items:center;
+  gap:12px;
+  margin-bottom:22px;
+}
+
+.tf-predefined-number{
+  font-size:.75rem;
+  font-weight:800;
+  letter-spacing:.12em;
+  opacity:.65;
+}
+
+.tf-predefined-days{
+  padding:6px 10px;
+  border-radius:999px;
+  background:rgba(255,255,255,.06);
+  font-size:.78rem;
+}
+
+.tf-predefined-icon{
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  width:58px;
+  height:58px;
+  margin-bottom:18px;
+  border-radius:16px;
+  background:rgba(255,255,255,.06);
+  font-size:1.7rem;
+}
+
+.tf-predefined-title{
+  margin:0 0 10px;
+  font-size:1.35rem;
+  font-weight:800;
+}
+
+.tf-predefined-description{
+  margin:0 0 18px;
+  opacity:.65;
+  line-height:1.55;
+  font-size:.9rem;
+}
+
+.tf-predefined-day-list{
+  display:flex;
+  flex-wrap:wrap;
+  gap:7px;
+  margin-bottom:22px;
+}
+
+.tf-predefined-day-list span{
+  padding:5px 9px;
+  border:1px solid rgba(255,255,255,.07);
+  border-radius:8px;
+  font-size:.75rem;
+  opacity:.75;
+}
+
+.tf-predefined-btn{
+  display:flex;
+  justify-content:center;
+  align-items:center;
+  gap:8px;
+  margin-top:auto;
+  text-decoration:none;
+}
+
+.tf-predefined-back{
+  margin-top:28px;
+}
+
+
+/* =========================================================
+   DETALLE
+========================================================= */
+
+.tf-predefined-detail-header{
+  margin-bottom:28px;
+}
+
+.tf-predefined-detail-title{
+  margin-top:20px;
+}
+
+.tf-predefined-detail-title .tf-title{
+  margin-top:7px;
+}
+
+.tf-predefined-detail-meta{
+  display:flex;
+  flex-wrap:wrap;
+  gap:10px;
+  margin-top:16px;
+}
+
+.tf-predefined-detail-meta span{
+  padding:7px 11px;
+  border-radius:9px;
+  background:rgba(255,255,255,.055);
+  font-size:.82rem;
+}
+
+.tf-predefined-detail-grid{
+  display:grid;
+  grid-template-columns:repeat(2,minmax(0,1fr));
+  gap:18px;
+}
+
+.tf-predefined-day-card{
+  padding:22px;
+}
+
+.tf-predefined-day-header{
+  position:relative;
+  padding-bottom:17px;
+  margin-bottom:14px;
+  border-bottom:1px solid rgba(255,255,255,.07);
+}
+
+.tf-predefined-day-number{
+  display:block;
+  margin-bottom:5px;
+  font-size:.7rem;
+  font-weight:800;
+  letter-spacing:.12em;
+  opacity:.5;
+}
+
+.tf-predefined-day-header h2{
+  margin:0;
+  font-size:1.2rem;
+}
+
+.tf-predefined-exercise-count{
+  display:block;
+  margin-top:5px;
+  font-size:.78rem;
+  opacity:.5;
+}
+
+.tf-predefined-exercises{
+  display:flex;
+  flex-direction:column;
+  gap:7px;
+}
+
+.tf-predefined-exercise{
+  display:flex;
+  align-items:center;
+  gap:12px;
+  padding:10px;
+  border-radius:10px;
+  background:rgba(255,255,255,.025);
+}
+
+.tf-predefined-exercise-number{
+  display:flex;
+  flex-shrink:0;
+  align-items:center;
+  justify-content:center;
+  width:30px;
+  height:30px;
+  border-radius:8px;
+  background:rgba(255,255,255,.07);
+  font-size:.75rem;
+  font-weight:800;
+}
+
+.tf-predefined-exercise strong{
+  display:block;
+  font-size:.88rem;
+}
+
+.tf-predefined-exercise small{
+  display:block;
+  margin-top:2px;
+  opacity:.4;
+  font-size:.7rem;
+}
+
+
+/* =========================================================
+   USAR RUTINA
+========================================================= */
+
+.tf-predefined-select{
+  display:flex;
+  justify-content:space-between;
+  align-items:center;
+  gap:25px;
+  margin-top:24px;
+  padding:24px;
+  border:1px solid rgba(255,255,255,.09);
+  border-radius:16px;
+  background:rgba(255,255,255,.035);
+}
+
+.tf-predefined-select h2{
+  margin:0 0 5px;
+  font-size:1.05rem;
+}
+
+.tf-predefined-select p{
+  margin:0;
+  opacity:.55;
+  font-size:.84rem;
+}
+
+.tf-predefined-use-btn{
+  flex-shrink:0;
+}
+
+.tf-predefined-use-btn:disabled{
+  opacity:.45;
+  cursor:not-allowed;
+}
+
+
+/* =========================================================
+   RESPONSIVE
+========================================================= */
+
+@media(max-width:950px){
+
+  .tf-predefined-grid{
+    grid-template-columns:repeat(2,minmax(0,1fr));
+  }
+
+}
+
+@media(max-width:700px){
+
+  .tf-predefined-grid,
+  .tf-predefined-detail-grid{
+    grid-template-columns:1fr;
+  }
+
+  .tf-predefined-select{
+    flex-direction:column;
+    align-items:stretch;
+  }
+
+  .tf-predefined-use-btn{
+    width:100%;
+  }
+
+}
+
+@media(max-width:480px){
+
+  .tf-predefined-card{
+    padding:18px;
+  }
+
+  .tf-predefined-card-top{
+    align-items:flex-start;
+    flex-direction:column;
+  }
+
+}
+/* =========================================================
+   DETALLE RUTINA PREDEFINIDA - REDISEÑO
+========================================================= */
+
+
+/* ---------- CABECERA ---------- */
+
+.tf-predefined-detail-header{
+  display:flex;
+  flex-direction:column;
+  align-items:center;
+
+  width:100%;
+  margin-bottom:32px;
+
+  text-align:center;
+}
+
+
+/* Botón volver */
+
+.tf-predefined-detail-header > .tf-link{
+  display:inline-flex;
+  align-items:center;
+  justify-content:center;
+
+  margin-bottom:24px;
+}
+
+
+/* Contenedor título */
+
+.tf-predefined-detail-title{
+  display:flex;
+  flex-direction:column;
+  align-items:center;
+
+  width:100%;
+  margin-top:0;
+
+  text-align:center;
+}
+
+
+/* RUTINA 1 / RUTINA 2... */
+
+.tf-predefined-detail-title .tf-predefined-number{
+  display:block;
+
+  margin-bottom:8px;
+
+  font-size:.72rem;
+  font-weight:800;
+  letter-spacing:.14em;
+
+  opacity:.55;
+}
+
+
+/* TÍTULO GRANDE */
+
+.tf-predefined-detail-title .tf-title{
+  display:inline-flex;
+  align-items:center;
+  justify-content:center;
+
+  width:auto;
+  max-width:900px;
+
+  margin:0 auto 16px;
+  padding:18px 38px;
+
+  border:2px solid #7c3aed;
+  border-radius:999px;
+
+  font-size:clamp(2rem,4vw,3.2rem);
+  line-height:1.05;
+  text-align:center;
+}
+
+
+/* SUBTÍTULO DEBAJO */
+
+.tf-predefined-detail-title .tf-subtitle{
+  width:100%;
+  max-width:850px;
+
+  margin:0 auto;
+
+  text-align:center;
+  line-height:1.6;
+
+  opacity:.7;
+}
+
+
+/* INFO 5 días / 31 ejercicios */
+
+.tf-predefined-detail-meta{
+  display:flex;
+  justify-content:center;
+  align-items:center;
+  flex-wrap:wrap;
+
+  gap:10px;
+
+  margin-top:18px;
+}
+
+.tf-predefined-detail-meta span{
+  display:inline-flex;
+  align-items:center;
+  justify-content:center;
+
+  padding:8px 13px;
+
+  border:1px solid rgba(255,255,255,.09);
+  border-radius:10px;
+
+  background:rgba(255,255,255,.04);
+
+  font-size:.82rem;
+  font-weight:600;
+}
+
+
+/* =========================================================
+   GRID DE DÍAS
+========================================================= */
+
+.tf-predefined-detail-grid{
+  display:grid;
+
+  /*
+   * Mucho más ancho.
+   * En escritorio entran 3 días en la primera fila.
+   */
+  grid-template-columns:repeat(3,minmax(0,1fr));
+
+  gap:18px;
+
+  width:100%;
+  max-width:1500px;
+
+  margin:0 auto;
+}
+
+
+/* =========================================================
+   TARJETA DE CADA DÍA
+========================================================= */
+
+.tf-predefined-day-card{
+  padding:16px;
+
+  border:1px solid rgba(124,58,237,.8);
+  border-radius:16px;
+
+  background:rgba(255,255,255,.018);
+}
+
+
+/* CABECERA DÍA */
+
+.tf-predefined-day-header{
+  display:flex;
+  flex-direction:column;
+  align-items:center;
+
+  margin-bottom:14px;
+  padding:2px 0 14px;
+
+  border-bottom:1px solid rgba(124,58,237,.45);
+
+  text-align:center;
+}
+
+.tf-predefined-day-number{
+  display:block;
+
+  margin-bottom:5px;
+
+  font-size:.68rem;
+  font-weight:800;
+  letter-spacing:.12em;
+
+  opacity:.5;
+}
+
+.tf-predefined-day-header h2{
+  margin:0;
+
+  font-size:1.08rem;
+  font-weight:800;
+}
+
+.tf-predefined-exercise-count{
+  display:block;
+
+  margin-top:5px;
+
+  font-size:.75rem;
+
+  opacity:.5;
+}
+
+
+/* =========================================================
+   EJERCICIOS
+========================================================= */
+
+.tf-predefined-exercises{
+  display:flex;
+  flex-direction:column;
+
+  gap:6px;
+}
+
+
+/* Fila ejercicio */
+
+.tf-predefined-exercise{
+  display:flex;
+  align-items:center;
+
+  gap:11px;
+
+  min-height:48px;
+
+  padding:7px 10px;
+
+  border:1px solid rgba(255,255,255,.025);
+  border-radius:9px;
+
+  background:rgba(255,255,255,.025);
+}
+
+
+/* Número */
+
+.tf-predefined-exercise-number{
+  display:flex;
+  align-items:center;
+  justify-content:center;
+
+  flex:0 0 30px;
+
+  width:30px;
+  height:30px;
+
+  border:1px solid rgba(124,58,237,.55);
+  border-radius:8px;
+
+  background:rgba(124,58,237,.12);
+
+  font-size:.75rem;
+  font-weight:800;
+}
+
+
+/* Nombre */
+
+.tf-predefined-exercise strong{
+  display:block;
+
+  font-size:.84rem;
+  font-weight:700;
+
+  line-height:1.25;
+}
+
+
+/* "Ejercicio 1" */
+
+.tf-predefined-exercise small{
+  display:block;
+
+  margin-top:2px;
+
+  font-size:.66rem;
+
+  opacity:.4;
+}
+
+
+/* =========================================================
+   BLOQUE USAR ESTA RUTINA
+========================================================= */
+
+.tf-predefined-select{
+  display:flex;
+  flex-direction:column;
+  align-items:center;
+  justify-content:center;
+
+  width:100%;
+  max-width:1500px;
+
+  margin:24px auto 0;
+  padding:22px;
+
+  border:1px solid rgba(124,58,237,.35);
+  border-radius:16px;
+
+  background:rgba(124,58,237,.035);
+
+  text-align:center;
+}
+
+.tf-predefined-select h2{
+  margin:0 0 6px;
+
+  font-size:1.05rem;
+}
+
+.tf-predefined-select p{
+  max-width:700px;
+
+  margin:0 0 16px;
+
+  font-size:.82rem;
+  line-height:1.5;
+
+  opacity:.55;
+}
+
+
+/* Formulario del botón */
+
+.tf-predefined-select form{
+  width:100%;
+  max-width:500px;
+}
+
+
+/* Botón usar */
+
+.tf-predefined-use-btn{
+  width:100%;
+
+  justify-content:center;
+
+  padding:12px 22px;
+}
+
+
+/* Ya NO está disabled */
+
+.tf-predefined-use-btn:not(:disabled){
+  opacity:1;
+  cursor:pointer;
+}
+
+
+/* =========================================================
+   VOLVER ABAJO
+========================================================= */
+
+.tf-predefined-back{
+  display:flex;
+  justify-content:center;
+
+  margin-top:22px;
+}
+
+
+/* =========================================================
+   RESPONSIVE
+========================================================= */
+
+
+/* Tablet */
+
+@media(max-width:1050px){
+
+  .tf-predefined-detail-grid{
+    grid-template-columns:repeat(2,minmax(0,1fr));
+  }
+
+}
+
+
+/* Móvil */
+
+@media(max-width:700px){
+
+  .tf-predefined-detail-title .tf-title{
+    width:100%;
+
+    padding:16px 20px;
+
+    font-size:2rem;
+  }
+
+  .tf-predefined-detail-grid{
+    grid-template-columns:1fr;
+  }
+
+  .tf-predefined-day-card{
+    padding:14px;
+  }
+
+  .tf-predefined-select{
+    padding:18px;
+  }
+
+}
+
+
+/* Móvil pequeño */
+
+@media(max-width:450px){
+
+  .tf-predefined-detail-title .tf-title{
+    font-size:1.65rem;
+  }
+
+  .tf-predefined-detail-meta{
+    width:100%;
+  }
+
+  .tf-predefined-detail-meta span{
+    flex:1;
+  }
+
+}
+/* =========================================================
+   SEMANA PREDEFINIDA - GRID 3 + 3 + 1
+========================================================= */
+
+.tf-predefined-detail-grid{
+  display:grid;
+  grid-template-columns:repeat(3, minmax(0, 1fr));
+
+  width:100%;
+  max-width:1500px;
+
+  margin:0 auto;
+  gap:18px;
+}
+
+
+/* El séptimo día ocupa las 3 columnas */
+
+.tf-predefined-detail-grid
+.tf-predefined-day-card:nth-child(7){
+  grid-column:1 / -1;
+}
+
+
+/* =========================================================
+   TARJETAS
+========================================================= */
+
+.tf-predefined-day-card{
+  min-width:0;
+  padding:18px;
+
+  border:1px solid rgba(124,58,237,.85);
+  border-radius:16px;
+
+  background:rgba(255,255,255,.018);
+}
+
+
+/* Cabecera */
+
+.tf-predefined-day-header{
+  display:flex;
+  flex-direction:column;
+  align-items:center;
+
+  padding:0 0 14px;
+  margin-bottom:14px;
+
+  border-bottom:1px solid rgba(124,58,237,.45);
+
+  text-align:center;
+}
+
+
+/* LUNES / MARTES... */
+
+.tf-predefined-weekday{
+  margin-bottom:6px;
+
+  font-size:.68rem;
+  font-weight:800;
+
+  letter-spacing:.14em;
+
+  color:#a78bfa;
+}
+
+
+/* Push / Pull / Legs / Descanso */
+
+.tf-predefined-day-header h2{
+  margin:0;
+
+  font-size:1.15rem;
+  font-weight:800;
+}
+
+
+/* Número ejercicios */
+
+.tf-predefined-exercise-count{
+  margin-top:5px;
+
+  font-size:.73rem;
+
+  opacity:.55;
+}
+
+
+/* =========================================================
+   EJERCICIOS
+========================================================= */
+
+.tf-predefined-exercises{
+  display:grid;
+  grid-template-columns:1fr 1fr;
+
+  gap:7px;
+}
+
+
+.tf-predefined-exercise{
+  display:flex;
+  align-items:center;
+
+  min-width:0;
+  min-height:48px;
+
+  gap:10px;
+  padding:8px 10px;
+
+  border-radius:9px;
+
+  background:rgba(255,255,255,.028);
+}
+
+
+.tf-predefined-exercise-number{
+  display:flex;
+  align-items:center;
+  justify-content:center;
+
+  flex:0 0 30px;
+
+  width:30px;
+  height:30px;
+
+  border:1px solid rgba(124,58,237,.6);
+  border-radius:8px;
+
+  background:rgba(124,58,237,.15);
+
+  font-size:.75rem;
+  font-weight:800;
+}
+
+
+.tf-predefined-exercise > div{
+  min-width:0;
+}
+
+
+.tf-predefined-exercise strong{
+  display:block;
+
+  font-size:.8rem;
+  line-height:1.25;
+}
+
+
+.tf-predefined-exercise small{
+  display:block;
+
+  margin-top:2px;
+
+  font-size:.65rem;
+
+  opacity:.4;
+}
+
+
+/* =========================================================
+   DESCANSO
+========================================================= */
+
+.tf-predefined-rest-card{
+  background:
+    linear-gradient(
+      135deg,
+      rgba(124,58,237,.035),
+      rgba(255,255,255,.012)
+    );
+}
+
+
+.tf-rest-content{
+  display:flex;
+  flex-direction:column;
+  align-items:center;
+  justify-content:center;
+
+  min-height:170px;
+
+  text-align:center;
+}
+
+
+.tf-rest-icon{
+  display:flex;
+  align-items:center;
+  justify-content:center;
+
+  width:56px;
+  height:56px;
+
+  margin-bottom:13px;
+
+  border-radius:14px;
+
+  background:rgba(124,58,237,.1);
+
+  font-size:1.65rem;
+}
+
+
+.tf-rest-content strong{
+  font-size:.9rem;
+}
+
+
+.tf-rest-content p{
+  max-width:270px;
+
+  margin:7px auto 0;
+
+  font-size:.76rem;
+  line-height:1.55;
+
+  opacity:.5;
+}
+
+
+/*
+ * Como domingo ocupa toda la fila,
+ * no hace falta que sea tan alto.
+ */
+
+.tf-predefined-detail-grid
+.tf-predefined-rest-card:nth-child(7)
+.tf-rest-content{
+  min-height:90px;
+}
+
+
+/* =========================================================
+   RESPONSIVE
+========================================================= */
+
+@media(max-width:1050px){
+
+  .tf-predefined-detail-grid{
+    grid-template-columns:repeat(2, minmax(0,1fr));
+  }
+
+  /*
+   * En tablet dejamos de forzar
+   * el domingo a ocupar 3 columnas.
+   */
+  .tf-predefined-detail-grid
+  .tf-predefined-day-card:nth-child(7){
+    grid-column:auto;
+  }
+
+}
+
+
+@media(max-width:700px){
+
+  .tf-predefined-detail-grid{
+    grid-template-columns:1fr;
+  }
+
+  .tf-predefined-exercises{
+    grid-template-columns:1fr;
+  }
+
+}
+/* =========================================================
+   NAVEGACIÓN SUPERIOR - RUTINA PREDEFINIDA
+========================================================= */
+
+.tf-predefined-top-actions{
+  display:flex;
+  justify-content:center;
+  align-items:center;
+  flex-wrap:wrap;
+
+  gap:10px;
+
+  width:100%;
+  margin:0 auto 28px;
+}
+
+.tf-predefined-nav-btn{
+  display:inline-flex;
+  align-items:center;
+  justify-content:center;
+
+  gap:7px;
+
+  padding:10px 15px;
+
+  border:1px solid rgba(124,58,237,.8);
+  border-radius:11px;
+
+  background:rgba(124,58,237,.04);
+
+  color:inherit;
+  text-decoration:none;
+
+  font-size:.8rem;
+  font-weight:700;
+
+  transition:
+    background .2s ease,
+    border-color .2s ease,
+    transform .2s ease;
+}
+
+.tf-predefined-nav-btn:hover{
+  background:rgba(124,58,237,.13);
+  border-color:#8b5cf6;
+
+  transform:translateY(-1px);
+}
+
+@media(max-width:600px){
+
+  .tf-predefined-top-actions{
+    align-items:stretch;
+  }
+
+  .tf-predefined-nav-btn{
+    flex:1;
+    min-width:150px;
+  }
+
+}
+.tf-predef-nav-top{
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  flex-wrap:wrap;
+
+  gap:12px;
+
+  width:100%;
+  margin:20px auto 28px;
+}
+
+input[type="number"]::-webkit-inner-spin-button,
+input[type="number"]::-webkit-outer-spin-button {
+    -webkit-appearance: none;
+    margin: 0;
+}
+
+/* Firefox y navegadores compatibles */
+input[type="number"] {
+    -moz-appearance: textfield;
+    appearance: textfield;
+}
+
+.tf-predef-nav-top-btn{
+  display:inline-flex;
+  align-items:center;
+  justify-content:center;
+
+  gap:8px;
+
+  padding:11px 17px;
+
+  border:1px solid #7c3aed;
+  border-radius:12px;
+
+  background:rgba(124,58,237,.06);
+
+  color:#fff;
+  text-decoration:none;
+
+  font-size:.82rem;
+  font-weight:700;
+
+  transition:
+    background .2s ease,
+    transform .2s ease,
+    border-color .2s ease;
+}
+
+.tf-predef-nav-top-btn:hover{
+  background:rgba(124,58,237,.16);
+  border-color:#a78bfa;
+
+  transform:translateY(-2px);
+}
+
+
+/* ==========================================
+   PROGRESO: RESPONSIVE SIN CAMBIAR EL DISEÑO
+   ========================================== */
+
+/* El padding y los bordes quedan dentro del ancho. */
+.tf-progress-shell,
+.tf-progress-shell *,
+.tf-progress-shell *::before,
+.tf-progress-shell *::after {
+    box-sizing: border-box;
+}
+
+/* Conservamos el ancho original de escritorio. */
+.tf-progress-shell {
+    width: 100%;
+    max-width: 1280px;
+    min-width: 0;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+/* Permite que los elementos se reduzcan dentro del grid. */
+.tf-progress-shell .tf-progress-topbar,
+.tf-progress-shell .tf-progress-body,
+.tf-progress-shell .tf-progress-topbar > *,
+.tf-progress-shell .tf-progress-body > *,
+.tf-progress-shell .tf-progress-summary-grid > * {
+    min-width: 0;
+}
+
+.tf-progress-shell .tf-progress-left,
+.tf-progress-shell .tf-progress-right {
+    width: 100%;
+    max-width: 100%;
+}
+
+/* El gráfico no debe imponer su ancho al resto de la página. */
+.tf-progress-shell .tf-progress-chart-box {
+    position: relative;
+    width: 100%;
+    max-width: 100%;
+    min-width: 0;
+}
+
+.tf-progress-shell .tf-progress-chart-box canvas {
+    display: block;
+    max-width: 100%;
+}
+
+/* Escritorio: mantenemos las dos columnas originales. */
+@media (min-width: 1181px) {
+    .tf-progress-shell .tf-progress-topbar {
+        grid-template-columns:
+            minmax(0, 1.2fr)
+            minmax(0, 1fr)
+            minmax(0, 1.3fr)
+            auto;
+    }
+
+    .tf-progress-shell .tf-progress-body {
+        grid-template-columns: 420px minmax(0, 1fr);
+    }
+}
+
+/* Tablet y móvil: una columna sin anchos mínimos implícitos. */
+@media (max-width: 1180px) {
+    .tf-progress-shell .tf-progress-topbar,
+    .tf-progress-shell .tf-progress-body {
+        grid-template-columns: minmax(0, 1fr);
+    }
+
+    .tf-progress-shell .tf-progress-topbar > *,
+    .tf-progress-shell .tf-progress-body > * {
+        grid-column: auto;
+    }
+
+    .tf-progress-shell .tf-pill-group {
+        justify-content: center;
+        flex-wrap: wrap;
+    }
+
+    .tf-progress-shell .tf-progress-list {
+        max-height: none;
+        overflow: visible;
+    }
+}
+
+/* Móvil: menos padding, sin cambiar colores ni tarjetas. */
+@media (max-width: 640px) {
+    .tf-dashboard:has(.tf-progress-shell) {
+        min-width: 0;
+        padding: 24px 14px;
+    }
+
+    .tf-dashboard:has(.tf-progress-shell) .tf-title {
+        max-width: 100%;
+        padding: 14px 30px;
+        font-size: 2.2rem;
+    }
+
+    .tf-dashboard:has(.tf-progress-shell) .tf-subtitle {
+        max-width: 100%;
+        padding: 12px 18px;
+        margin-bottom: 32px;
+        font-size: 0.95rem;
+        line-height: 1.5;
+    }
+
+    .tf-progress-shell .tf-progress-topbar {
+        gap: 16px;
+    }
+
+    .tf-progress-shell .tf-progress-body {
+        gap: 18px;
+    }
+
+    .tf-progress-shell .tf-progress-left,
+    .tf-progress-shell .tf-progress-right {
+        padding: 20px 14px;
+    }
+
+    .tf-progress-shell .tf-progress-panel-title {
+        font-size: 21px;
+    }
+
+    .tf-progress-shell .tf-progress-list {
+        padding-right: 0;
+    }
+
+    .tf-progress-shell .tf-progress-item {
+        min-width: 0;
+        padding: 13px 12px;
+        gap: 8px;
+    }
+
+    .tf-progress-shell .tf-progress-item > :first-child {
+        min-width: 0;
+        overflow-wrap: anywhere;
+    }
+
+    .tf-progress-shell .tf-progress-item-diff {
+        min-width: 0;
+        flex-shrink: 0;
+    }
+
+    .tf-progress-shell .tf-progress-chart-box {
+        height: 280px;
+        min-height: 0;
+        padding: 10px;
+        border-radius: 18px;
+    }
+
+    .tf-progress-shell .tf-progress-summary-grid {
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+        gap: 10px;
+    }
+
+    .tf-progress-shell .tf-progress-summary-card {
+        padding: 13px 10px;
+    }
+
+    .tf-progress-shell .tf-progress-summary-label {
+        font-size: 12px;
+        line-height: 1.5;
+    }
+
+    .tf-progress-shell .tf-progress-summary-value {
+        font-size: 16px;
+        overflow-wrap: anywhere;
+    }
+
+    .tf-progress-shell .tf-select {
+        max-width: 100%;
+        font-size: 16px;
+    }
+
+    .tf-progress-shell .tf-pill span {
+        min-height: 44px;
+        padding-left: 14px;
+        padding-right: 14px;
+    }
+}
+
+/* Móviles especialmente estrechos. */
+@media (max-width: 380px) {
+    .tf-progress-shell .tf-progress-summary-grid {
+        grid-template-columns: minmax(0, 1fr);
+    }
+}
+
+/* ==========================================
+   PROGRESO: ALINEACIÓN DE LOS FILTROS
+   ========================================== */
+
+.tf-progress-shell .tf-progress-topbar {
+    align-items: start;
+    gap: 16px;
+}
+
+/* Todas las etiquetas parten de la misma altura. */
+.tf-progress-shell .tf-progress-topbar .tf-label {
+    display: block;
+    margin: 0 0 10px;
+    font-size: 12px;
+    line-height: 16px;
+    text-align: center;
+}
+
+/* Misma altura y radio para selector y botones. */
+.tf-progress-shell .tf-progress-topbar .tf-select {
+    width: 100%;
+    height: 52px;
+    min-height: 52px;
+    margin: 0;
+    border-radius: 16px;
+    box-sizing: border-box;
+}
+
+.tf-progress-shell .tf-progress-topbar .tf-pill-group {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    justify-content: center;
+    gap: 10px;
+}
+
+.tf-progress-shell .tf-progress-topbar .tf-pill {
+    margin: 0;
+}
+
+.tf-progress-shell .tf-progress-topbar .tf-pill span {
+    height: 52px;
+    min-height: 52px;
+    padding: 0 16px;
+    border-radius: 16px;
+    box-sizing: border-box;
+    font-size: 14px;
+    line-height: 1;
+}
+
+/* El texto de ayuda permanece debajo del selector. */
+.tf-progress-shell .tf-progress-filter-help {
+    margin: 8px 0 0;
+    font-size: 12px;
+    line-height: 1.5;
+    text-align: center;
+}
+
+/* Buscar empieza a la altura de los controles, no de las etiquetas. */
+.tf-progress-shell .tf-progress-submit {
+    padding-top: 26px;
+}
+
+.tf-progress-shell .tf-progress-submit .tf-btn {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    height: 52px;
+    min-height: 52px;
+    margin: 0;
+    padding: 0 18px;
+    border-radius: 16px;
+    font-size: 14px;
+    line-height: 1;
+    box-sizing: border-box;
+}
+
+/* Escritorio: cada grupo dispone del ancho que necesita. */
+@media (min-width: 1181px) {
+    .tf-progress-shell .tf-progress-topbar {
+        grid-template-columns:
+            minmax(240px, 1fr)
+            auto
+            auto
+            auto;
+    }
+
+    .tf-progress-shell .tf-progress-topbar .tf-pill-group {
+        flex-wrap: nowrap;
+    }
+}
+
+/* Tablet y móvil: conservamos los filtros apilados. */
+@media (max-width: 1180px) {
+    .tf-progress-shell .tf-progress-submit {
+        padding-top: 0;
+        text-align: center;
+    }
+}
+
+/* Selector de rutinas guardadas. */
+.tf-routine-selector,
+.tf-routine-selector * {
+    box-sizing: border-box;
+}
+
+.tf-routine-selector {
+    width: 100%;
+    max-width: 1100px;
+    min-width: 0;
+    margin: 0 auto 24px;
+    padding: 22px;
+    border: 1px solid rgba(124, 58, 237, .4);
+    border-radius: 20px;
+    background: rgba(124, 58, 237, .04);
+    text-align: left;
+}
+
+.tf-routine-selector-heading {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    flex-wrap: wrap;
+    gap: 16px;
+    margin-bottom: 18px;
+}
+
+.tf-routine-selector-heading h2 {
+    margin: 0 0 5px;
+    color: #fff;
+    font-size: 1.15rem;
+    font-weight: 800;
+}
+
+.tf-routine-selector-heading p {
+    margin: 0;
+    color: rgba(255, 255, 255, .65);
+    font-size: .85rem;
+    line-height: 1.6;
+}
+
+.tf-routine-selector-heading .tf-link {
+    font-size: .8rem;
+}
+
+.tf-routine-selector-form {
+    display: grid;
+    grid-template-columns: minmax(0, 1fr) auto;
+    align-items: end;
+    gap: 12px;
+}
+
+.tf-routine-selector-field {
+    min-width: 0;
+}
+
+.tf-routine-selector-field .tf-label {
+    margin: 0 0 8px;
+}
+
+.tf-routine-selector-field .tf-select {
+    width: 100%;
+    min-width: 0;
+    max-width: 100%;
+    height: 52px;
+    margin: 0;
+}
+
+.tf-routine-selector-form .tf-btn {
+    min-height: 52px;
+    margin: 0;
+}
+
+@media (max-width: 640px) {
+    .tf-routine-selector {
+        padding: 18px 14px;
+    }
+
+    .tf-routine-selector-form {
+        grid-template-columns: minmax(0, 1fr);
+    }
+
+    .tf-routine-selector-heading .tf-link,
+    .tf-routine-selector-form .tf-btn {
+        width: 100%;
+    }
+
+    .tf-routine-selector-field .tf-select {
+        font-size: 16px;
+    }
+}
+
+/* Botones del asistente de creación de rutinas. */
+.tf-wizard-page .tf-btn,
+.tf-wizard-page .tf-link,
+.tf-wizard-page .tf-card button {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    gap: 8px;
+    min-height: 46px;
+    margin: 0;
+    padding: 11px 18px;
+    border: 1px solid rgba(124, 58, 237, .85);
+    border-radius: 12px;
+    background: transparent;
+    color: #fff;
+    font-family: inherit;
+    font-size: 14px;
+    font-weight: 700;
+    line-height: 1.4;
+    text-decoration: none;
+    box-sizing: border-box;
+    cursor: pointer;
+}
+
+.tf-wizard-page .tf-btn:hover,
+.tf-wizard-page .tf-link:hover,
+.tf-wizard-page .tf-card button:hover {
+    background: rgba(124, 58, 237, .14);
+    border-color: #a78bfa;
+    text-decoration: none;
+}
+
+.tf-wizard-page .tf-btn:focus-visible,
+.tf-wizard-page .tf-link:focus-visible,
+.tf-wizard-page .tf-card button:focus-visible {
+    outline: 2px solid #c4b5fd;
+    outline-offset: 3px;
+}
+
+/* Filas de navegación superior e inferior. */
+.tf-wizard-page .tf-wizard-actions {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-wrap: wrap;
+    gap: 12px;
+    margin: 20px 0;
+}
+
+.tf-wizard-page .tf-wizard-actions form {
+    margin: 0;
+}
+
+/* Alineación del filtro, buscador y botón Limpiar. */
+.tf-wizard-page .tf-filters {
+    align-items: center;
+    gap: 12px;
+}
+
+.tf-wizard-page .tf-filters input,
+.tf-wizard-page .tf-filters select {
+    min-height: 50px;
+    margin: 0;
+    box-sizing: border-box;
+}
+
+.tf-wizard-page .tf-filters button {
+    min-height: 50px;
+    margin: 0;
+}
+
+@media (max-width: 600px) {
+    .tf-wizard-page .tf-wizard-actions {
+        display: grid;
+        grid-template-columns: minmax(0, 1fr);
+    }
+
+    .tf-wizard-page .tf-wizard-actions > *,
+    .tf-wizard-page .tf-wizard-actions .tf-btn,
+    .tf-wizard-page .tf-wizard-actions .tf-link {
+        width: 100%;
+    }
+
+    .tf-wizard-page .tf-filters {
+        flex-direction: column;
+        align-items: stretch;
+    }
+
+    .tf-wizard-page .tf-filters > * {
+        width: 100%;
+        min-width: 0;
+        max-width: 100%;
+    }
+}
+

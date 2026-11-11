@@ -1,0 +1,136 @@
+.tf-progress-page .ep-picker {
+    position: relative;
+    width: 100%;
+    min-width: 0;
+    text-align: left;
+}
+
+.tf-progress-page .ep-trigger {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 12px;
+    width: 100%;
+    min-height: 52px;
+    margin: 0;
+    padding: 12px 15px;
+    border: 1px solid #735096;
+    border-radius: 14px;
+    background: #100c15;
+    color: #f5edff;
+    font: inherit;
+    font-size: 14px;
+    line-height: 1.5;
+    text-align: left;
+    cursor: pointer;
+}
+
+.tf-progress-page .ep-trigger:hover:not(:disabled) {
+    border-color: #b794f6;
+    background: #1b1126;
+}
+
+.tf-progress-page .ep-trigger:disabled {
+    opacity: 0.5;
+    cursor: not-allowed;
+}
+
+.tf-progress-page .ep-trigger-label {
+    min-width: 0;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+}
+
+.tf-progress-page .ep-arrow {
+    flex-shrink: 0;
+    color: #c4a2ed;
+}
+
+.tf-progress-page .ep-panel {
+    position: absolute;
+    top: calc(100% + 8px);
+    right: 0;
+    left: 0;
+    z-index: 60;
+    padding: 10px;
+    border: 1px solid #7950a0;
+    border-radius: 15px;
+    background: #17111e;
+    box-shadow: 0 18px 45px #0009;
+}
+
+.tf-progress-page .ep-panel[hidden] {
+    display: none;
+}
+
+.tf-progress-page .ep-search {
+    display: block;
+    width: 100%;
+    min-height: 43px;
+    margin: 0 0 8px;
+    padding: 11px 12px;
+    box-sizing: border-box;
+    border: 1px solid #5f4375;
+    border-radius: 10px;
+    background: #0b080f;
+    color: #fff;
+    font: inherit;
+    font-size: 14px;
+}
+
+.tf-progress-page .ep-search::placeholder {
+    color: #a89ab8;
+}
+
+.tf-progress-page .ep-list {
+    max-height: 260px;
+    margin: 0;
+    padding: 0;
+    overflow-y: auto;
+    list-style: none;
+    scrollbar-width: thin;
+    scrollbar-color: #8754b5 #17111e;
+}
+
+.tf-progress-page .ep-option {
+    margin: 0;
+    padding: 11px 12px;
+    border-radius: 9px;
+    color: #e8dff1;
+    font-size: 13px;
+    line-height: 1.6;
+    overflow-wrap: anywhere;
+    cursor: pointer;
+}
+
+.tf-progress-page .ep-option[aria-selected="true"] {
+    background: #342045;
+    color: #e4caff;
+}
+
+.tf-progress-page .ep-option.ep-active {
+    background: #7133b6;
+    color: #fff;
+}
+
+.tf-progress-page .ep-empty {
+    margin: 0;
+    padding: 13px 10px;
+    color: #c0afce;
+    font-size: 13px;
+    line-height: 1.6;
+}
+
+.tf-progress-page .ep-trigger:focus-visible,
+.tf-progress-page .ep-search:focus-visible {
+    outline: 2px solid #c4b5fd;
+    outline-offset: 3px;
+}
+
+.tf-progress-page .ep-error {
+    margin: 8px 0 0;
+    color: #fda4af;
+    font-size: 12px;
+    line-height: 1.6;
+}
