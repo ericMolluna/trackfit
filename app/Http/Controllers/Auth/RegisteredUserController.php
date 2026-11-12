@@ -73,7 +73,13 @@ class RegisteredUserController extends Controller
             'password' => Hash::make($request->password),
         ]);
 
-        event(new Registered($user));
+        try {
+            event(new Registered($user));
+        } catch (\Throwable $e) {
+            // Si el correo de verificación falla, no bloqueamos el registro:
+            // el usuario puede reenviarlo desde la pantalla de verificación.
+            report($e);
+        }
 
         Auth::login($user);
 

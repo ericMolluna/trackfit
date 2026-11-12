@@ -5,6 +5,8 @@ namespace App\Providers;
 use Illuminate\Auth\Notifications\ResetPassword;
 use Illuminate\Auth\Notifications\VerifyEmail;
 use Illuminate\Notifications\Messages\MailMessage;
+use App\Mail\BrevoApiTransport;
+use Illuminate\Support\Facades\Mail;
 use Illuminate\Support\ServiceProvider;
 
 class AppServiceProvider extends ServiceProvider
@@ -22,6 +24,9 @@ class AppServiceProvider extends ServiceProvider
      */
     public function boot(): void
     {
+        // Transporte de correo por API HTTPS de Brevo (Render gratis bloquea SMTP).
+        Mail::extend('brevo', fn (array $config) => new BrevoApiTransport((string) ($config['key'] ?? '')));
+
         VerifyEmail::toMailUsing(
             function (object $notifiable, string $url): MailMessage {
                 return (new MailMessage)

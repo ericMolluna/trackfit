@@ -223,4 +223,3 @@ class WorkoutController extends Controller
         }
     }
 }
-
