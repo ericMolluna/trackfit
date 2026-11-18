@@ -325,6 +325,13 @@
                 </p>
             </div>
 
+            @if (session('unverified'))
+                <div class="error" role="alert">
+                    Esta cuenta no está verificada. Abre el enlace que te
+                    hemos enviado al correo para poder entrar en TrackFit.
+                </div>
+            @endif
+
             @if (session('status') === 'verification-link-sent')
                 <div class="status" role="status">
                     Hemos enviado otro enlace de verificación.

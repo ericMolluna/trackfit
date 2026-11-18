@@ -10,10 +10,8 @@ use App\Http\Controllers\RoutineFollowController;
 use App\Http\Controllers\RoutineManageController;
 use App\Http\Controllers\RoutineWizardController;
 use App\Http\Controllers\WorkoutController;
-use App\Models\User;
-use Illuminate\Support\Facades\Auth;
+use App\Http\Controllers\Auth\SocialAuthController;
 use Illuminate\Support\Facades\Route;
-use Laravel\Socialite\Facades\Socialite;
 
 /*
 |--------------------------------------------------------------------------
@@ -37,11 +35,13 @@ Route::get('/dashboard', [DashboardController::class, 'index'])
 
 /*
 |--------------------------------------------------------------------------
-| ZONA PRIVADA (requiere sesión iniciada)
+| ZONA PRIVADA (requiere sesión iniciada y correo verificado)
 |--------------------------------------------------------------------------
+| Sin el correo verificado, cualquier ruta privada redirige a la pantalla
+| «Revisa tu correo», aunque se escriba la URL directamente.
 */
 
-Route::middleware('auth')->group(function () {
+Route::middleware(['auth', 'verified'])->group(function () {
 
     // ===== HOY TOCA =====
     Route::post('/dashboard/empezar', [DashboardController::class, 'start'])
@@ -124,19 +124,15 @@ Route::middleware('auth')->group(function () {
         ->name('rutinas.index');
 
     Route::get('/rutinas/{routine}/editar', [RoutineManageController::class, 'edit'])
-        ->whereNumber('routine')
         ->name('rutinas.edit');
 
     Route::put('/rutinas/{routine}', [RoutineManageController::class, 'update'])
-        ->whereNumber('routine')
         ->name('rutinas.update');
 
     Route::post('/rutinas/{routine}/duplicar', [RoutineManageController::class, 'duplicate'])
-        ->whereNumber('routine')
         ->name('rutinas.duplicate');
 
     Route::delete('/rutinas/{routine}', [RoutineManageController::class, 'destroy'])
-        ->whereNumber('routine')
         ->name('rutinas.destroy');
 
     // ===== RUTINAS PREDEFINIDAS =====
@@ -177,59 +173,17 @@ require __DIR__.'/auth.php';
 
 /*
 |--------------------------------------------------------------------------
-| GOOGLE OAUTH
+| ACCESO CON GOOGLE / GITHUB
 |--------------------------------------------------------------------------
 */
 
-Route::get('/google-auth/redirect', function () {
-    return Socialite::driver('google')->redirect();
-})->name('google.redirect');
+// throttle:20,1 = máximo 20 intentos por minuto
+Route::middleware(['guest', 'throttle:20,1'])->group(function () {
+    Route::get('/auth/{provider}/redirect', [SocialAuthController::class, 'redirect'])
+        ->whereIn('provider', ['google', 'github'])
+        ->name('social.redirect');
 
-Route::get('/google-auth/callback', function () {
-    $g = Socialite::driver('google')->stateless()->user();
-
-    $user = User::updateOrCreate(
-        ['email' => $g->getEmail()],
-        [
-            'name' => $g->getName() ?? $g->getNickname(),
-            'password' => bcrypt(str()->random(24)),
-            'provider' => 'google',
-            'provider_id' => $g->getId(),
-        ]
-    );
-
-    Auth::login($user, true);
-
-    return redirect('/dashboard');
-});
-
-/*
-|--------------------------------------------------------------------------
-| GITHUB OAUTH
-|--------------------------------------------------------------------------
-*/
-
-Route::get('/github-auth/redirect', function () {
-    return Socialite::driver('github')->stateless()->redirect();
-})->name('github.redirect');
-
-Route::get('/github-auth/callback', function () {
-    $gh = Socialite::driver('github')->stateless()->user();
-
-    $email = $gh->getEmail()
-        ?: ($gh->getNickname() . '@users.noreply.github.com');
-
-    $user = User::updateOrCreate(
-        ['email' => $email],
-        [
-            'name' => $gh->getName() ?: $gh->getNickname(),
-            'password' => bcrypt(str()->random(32)),
-            'provider' => 'github',
-            'provider_id' => $gh->getId(),
-        ]
-    );
-
-    Auth::login($user, true);
-
-    return redirect()->intended('/dashboard');
+    Route::get('/auth/{provider}/callback', [SocialAuthController::class, 'callback'])
+        ->whereIn('provider', ['google', 'github'])
+        ->name('social.callback');
 });
