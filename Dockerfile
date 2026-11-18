@@ -6,10 +6,10 @@ RUN sed -ri -e 's!/var/www/html!${APACHE_DOCUMENT_ROOT}!g' /etc/apache2/sites-av
     && sed -ri 's!AllowOverride None!AllowOverride All!g' /etc/apache2/apache2.conf \
     && a2enmod rewrite headers
 
-# Extensión zip para Composer + bcmath para Laravel
-RUN apt-get update && apt-get install -y libzip-dev unzip \
+# Extensión zip para Composer + bcmath para Laravel + pdo_pgsql para PostgreSQL
+RUN apt-get update && apt-get install -y libzip-dev libpq-dev unzip \
     && rm -rf /var/lib/apt/lists/*
-RUN docker-php-ext-install bcmath zip
+RUN docker-php-ext-install bcmath zip pdo_pgsql
 
 # Composer
 COPY --from=composer:2 /usr/bin/composer /usr/bin/composer

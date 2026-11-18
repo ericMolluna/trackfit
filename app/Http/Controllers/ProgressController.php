@@ -2,6 +2,8 @@
 
 namespace App\Http\Controllers;
 
+use Illuminate\Support\Facades\DB;
+
 use App\Models\Workout;
 use App\Models\WorkoutSet;
 use Carbon\CarbonImmutable;
@@ -164,6 +166,18 @@ class ProgressController extends Controller
      */
     private function periodSql(string $groupBy): string
     {
+        // En el servidor usamos PostgreSQL y en local SQLite:
+        // cada uno tiene sus propias funciones de fecha.
+        if (DB::connection()->getDriverName() === 'pgsql') {
+            return match ($groupBy) {
+                'month' => "to_char(workouts.created_at, 'YYYY-MM')",
+                'quarter' => "to_char(workouts.created_at, 'YYYY') || '-T' || CAST(EXTRACT(QUARTER FROM workouts.created_at) AS INTEGER)",
+                'year' => "to_char(workouts.created_at, 'YYYY')",
+                // Lunes de la semana (igual que la versión SQLite)
+                default => "to_char(date_trunc('week', workouts.created_at), 'YYYY-MM-DD')",
+            };
+        }
+
         return match ($groupBy) {
             'month' =>
                 "strftime('%Y-%m', workouts.created_at)",
