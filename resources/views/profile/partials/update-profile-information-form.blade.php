@@ -74,6 +74,7 @@
                     value="{{ old('email', $user->email) }}"
                     autocomplete="email"
                     required
+                    @if (filled($user->provider)) readonly @endif
                     aria-describedby="profile-email-help{{ $errors->has('email') ? ' profile-email-errors' : '' }}"
                     @if ($errors->has('email'))
                         aria-invalid="true"
@@ -81,8 +82,14 @@
                 >
 
                 <p class="pf-help" id="profile-email-help">
-                    Si cambias tu correo, tendrás que verificar
-                    la nueva dirección.
+                    @if (filled($user->provider))
+                        El correo está vinculado a tu cuenta de
+                        {{ $user->provider === 'github' ? 'GitHub' : 'Google' }}
+                        y no se puede cambiar.
+                    @else
+                        Si cambias tu correo, tendrás que verificar
+                        la nueva dirección.
+                    @endif
                 </p>
 
                 @if ($errors->has('email'))

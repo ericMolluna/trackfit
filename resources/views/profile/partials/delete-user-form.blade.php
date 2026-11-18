@@ -293,7 +293,11 @@
 
             <p class="tf-delete-text" id="tf-delete-description">
                 Si continúas, se eliminará tu cuenta de TrackFit.
-                Para confirmar la operación, introduce tu contraseña actual.
+                @if (filled(auth()->user()->provider))
+                    Para confirmar la operación, escribe el correo de tu cuenta.
+                @else
+                    Para confirmar la operación, introduce tu contraseña actual.
+                @endif
             </p>
 
             <p class="tf-delete-warning">
@@ -302,6 +306,36 @@
                 de eliminar tu cuenta.
             </p>
 
+            @if (filled(auth()->user()->provider))
+            <label class="tf-delete-label" for="delete-account-password">
+                Escribe tu correo ({{ auth()->user()->email }})
+            </label>
+
+            <input
+                class="tf-delete-input"
+                id="delete-account-password"
+                x-ref="password"
+                name="confirm_email"
+                type="email"
+                autocomplete="off"
+                placeholder="{{ auth()->user()->email }}"
+                required
+                @if ($errors->userDeletion->has('confirm_email'))
+                    aria-invalid="true"
+                    aria-describedby="delete-password-error"
+                @endif
+            >
+
+            @if ($errors->userDeletion->has('confirm_email'))
+                <p
+                    class="tf-delete-error"
+                    id="delete-password-error"
+                    role="alert"
+                >
+                    {{ $errors->userDeletion->first('confirm_email') }}
+                </p>
+            @endif
+            @else
             <label class="tf-delete-label" for="delete-account-password">
                 Contraseña actual
             </label>
@@ -329,6 +363,8 @@
                 >
                     {{ $errors->userDeletion->first('password') }}
                 </p>
+            @endif
+
             @endif
 
             <div class="tf-delete-actions">
