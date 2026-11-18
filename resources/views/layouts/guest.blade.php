@@ -17,13 +17,6 @@
       {{ $slot }}
     </div>
 
-    {{-- Card social (no cambia funcionalidad) --}}
-    <div class="w-full sm:max-w-md mt-6 card">
-      <div class="grid gap-3">
-        <a href="{{ route('google.redirect') }}" class="btn-social w-full"></a>
-        <a href="{{ route('github.redirect') }}" class="btn-social w-full"></a>
-      </div>
-    </div>
   </div>
 </body>
 </html>

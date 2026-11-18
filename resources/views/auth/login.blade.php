@@ -124,6 +124,7 @@
             outline: 2px solid #c4b5fd;
             outline-offset: 4px;
         }
+
     </style>
 </head>
 
@@ -150,6 +151,8 @@
                 );
 
                 $rateLimited = $errors->has('login');
+
+                $socialError = $errors->has('social');
             @endphp
 
             @if ($errors->any())
@@ -166,7 +169,16 @@
                     </span>
 
                     <div class="tf-login-notice-content">
-                        @if ($rateLimited)
+                        @if ($socialError)
+                            <h2 class="tf-login-notice-title">
+                                Usa tu método de acceso
+                            </h2>
+
+                            <p class="tf-login-notice-text">
+                                {{ $errors->first('social') }}
+                            </p>
+
+                        @elseif ($rateLimited)
                             <h2 class="tf-login-notice-title">
                                 Demasiados intentos
                             </h2>
@@ -292,6 +304,10 @@
                 <button class="auth-btn" type="submit">
                     Entrar
                 </button>
+
+                <div class="tf-social-divider">o</div>
+
+                @include('auth.partials.google-button')
 
                 @if (Route::has('register'))
                     <div class="tf-login-footer">

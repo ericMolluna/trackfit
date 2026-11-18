@@ -36,14 +36,14 @@ return [
     ],
     'google' => [
         'client_id' => env('GOOGLE_CLIENT_ID'),
-        'client_secret' => env('GOOGLE_SECRET'),
-        'redirect' => 'http://127.0.0.1:8000/google-auth/callback',
+        'client_secret' => env('GOOGLE_CLIENT_SECRET', env('GOOGLE_SECRET')),
+        'redirect' => env('GOOGLE_REDIRECT_URI', rtrim((string) env('APP_URL'), '/').'/auth/google/callback'),
     ],
 
     'github' => [
     'client_id'     => env('GITHUB_CLIENT_ID'),
     'client_secret' => env('GITHUB_CLIENT_SECRET'),
-    'redirect'      => 'http://127.0.0.1:8000/github-auth/callback',
+    'redirect'      => env('GITHUB_REDIRECT_URI', rtrim((string) env('APP_URL'), '/').'/auth/github/callback'),
 ],
 
 ];
