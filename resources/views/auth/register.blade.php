@@ -77,6 +77,7 @@
             outline: 2px solid #c4b5fd;
             outline-offset: 4px;
         }
+
     </style>
 </head>
 
@@ -90,12 +91,24 @@
             </p>
 
             @php
-                $emailAlreadyRegistered = in_array(
+                $emailLinkedWithGoogle = in_array(
+                    'Esta cuenta ya está vinculada con Google.',
+                    $errors->get('email'),
+                    true
+                );
+
+                $emailAlreadyRegistered = $emailLinkedWithGoogle || in_array(
                     'Este correo ya está registrado.',
                     $errors->get('email'),
                     true
                 );
             @endphp
+
+            @error('session')
+                <div class="tf-register-notice" role="alert">
+                    <p>{{ $message }}</p>
+                </div>
+            @enderror
 
             @if ($emailAlreadyRegistered)
                 <div
@@ -103,16 +116,29 @@
                     role="alert"
                     id="registered-email-notice"
                 >
-                    <h2>Este correo ya está registrado</h2>
+                    @if ($emailLinkedWithGoogle)
+                        <h2>Esta cuenta ya está vinculada con Google</h2>
 
-                    <p>¿Quieres iniciar sesión?</p>
+                        <p>Entra con el botón «Continuar con Google».</p>
 
-                    <a
-                        class="tf-register-login"
-                        href="{{ route('login') }}"
-                    >
-                        Iniciar sesión
-                    </a>
+                        <a
+                            class="tf-register-login"
+                            href="{{ route('social.redirect', 'google') }}"
+                        >
+                            Continuar con Google
+                        </a>
+                    @else
+                        <h2>Este correo ya está registrado</h2>
+
+                        <p>¿Quieres iniciar sesión?</p>
+
+                        <a
+                            class="tf-register-login"
+                            href="{{ route('login') }}"
+                        >
+                            Iniciar sesión
+                        </a>
+                    @endif
                 </div>
             @endif
 
@@ -189,15 +215,20 @@
                     required
                     @if ($errors->has('password'))
                         aria-invalid="true"
-                        aria-describedby="password-error"
                     @endif
+                    aria-describedby="password-rules-password{{ $errors->has('password') ? ' password-error' : '' }}"
                 >
 
-                @error('password')
-                    <p class="tf-field-error" id="password-error">
-                        {{ $message }}
-                    </p>
-                @enderror
+                {{-- Lista de requisitos (resources/views/auth/partials/password-rules.blade.php) --}}
+                @include('auth.partials.password-rules', ['for' => 'password'])
+
+                @if ($errors->has('password'))
+                    <div id="password-error">
+                        @foreach ($errors->get('password') as $message)
+                            <p class="tf-field-error">{{ $message }}</p>
+                        @endforeach
+                    </div>
+                @endif
 
                 <label class="tf-label" for="password_confirmation">
                     Repite contraseña
@@ -216,6 +247,10 @@
                     Crear cuenta
                 </button>
 
+                <div class="tf-social-divider">o</div>
+
+                @include('auth.partials.google-button')
+
                 <p class="tf-register-footer">
                     ¿Ya tienes cuenta?
 
@@ -226,5 +261,6 @@
             </form>
         </section>
     </main>
+
 </body>
 </html>

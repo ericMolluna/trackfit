@@ -23,6 +23,10 @@ class PasswordResetLinkController extends Controller
      */
     public function store(Request $request): RedirectResponse
     {
+        $request->merge([
+            'email' => mb_strtolower(trim((string) $request->input('email'))),
+        ]);
+
         $request->validate(
             [
                 'email' => ['required', 'string', 'email'],
@@ -33,6 +37,18 @@ class PasswordResetLinkController extends Controller
                 'email.email' => 'Introduce un correo electrónico válido.',
             ]
         );
+
+        $socialUser = \App\Models\User::where('email', $request->input('email'))
+            ->whereNotNull('provider')
+            ->first();
+
+        if ($socialUser) {
+            $name = $socialUser->provider === 'github' ? 'GitHub' : 'Google';
+
+            return back()
+                ->withInput($request->only('email'))
+                ->withErrors(['email' => "Esta cuenta se creó con {$name} y no tiene contraseña. Inicia sesión con el botón «Continuar con {$name}»."]);
+        }
 
         $status = Password::sendResetLink(
             $request->only('email')

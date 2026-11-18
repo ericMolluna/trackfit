@@ -106,6 +106,10 @@
                         </button>
                     </div>
 
+                    @if ($fieldName === 'password')
+                        @include('auth.partials.password-rules', ['for' => $fieldId])
+                    @endif
+
                     @if (count($fieldErrors))
                         <div id="{{ $fieldId }}-errors">
                             @foreach ($fieldErrors as $error)

@@ -4,6 +4,7 @@ namespace App\Http\Controllers\Auth;
 
 use App\Http\Controllers\Controller;
 use App\Models\User;
+use App\Support\PasswordRules;
 use Illuminate\Auth\Events\PasswordReset;
 use Illuminate\Http\RedirectResponse;
 use Illuminate\Http\Request;
@@ -30,11 +31,26 @@ class NewPasswordController extends Controller
      */
     public function store(Request $request): RedirectResponse
     {
+        $request->merge([
+            'email' => mb_strtolower(trim((string) $request->input('email'))),
+        ]);
+
         $request->validate([
             'token' => ['required'],
             'email' => ['required', 'email'],
-            'password' => ['required', 'confirmed', Rules\Password::defaults()],
-        ]);
+            // Mismas reglas que al crear la cuenta (app/Support/PasswordRules.php).
+            'password' => ['required', 'confirmed', PasswordRules::rule()],
+        ], [
+            'token.required' => 'El enlace no es válido. Pide uno nuevo.',
+            'email.required' => 'Introduce tu correo electrónico.',
+            'email.email' => 'Introduce un correo electrónico válido.',
+        ] + PasswordRules::messages());
+
+        // Las cuentas de Google o GitHub no pueden tener contraseña.
+        if (User::where('email', $request->input('email'))->whereNotNull('provider')->exists()) {
+            return back()->withInput($request->only('email'))
+                ->withErrors(['email' => 'Esta cuenta se creó con Google y no tiene contraseña.']);
+        }
 
         // Here we will attempt to reset the user's password. If it is successful we
         // will update the password on an actual user model and persist it to the

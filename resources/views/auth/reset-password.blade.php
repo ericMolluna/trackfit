@@ -90,6 +90,8 @@
                     @endif
                 >
 
+                @include('auth.partials.password-rules', ['for' => 'password'])
+
                 <label class="pw-label" for="password_confirmation">
                     Repite la nueva contraseña
                 </label>

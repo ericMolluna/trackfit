@@ -4,12 +4,12 @@ namespace App\Http\Controllers\Auth;
 
 use App\Http\Controllers\Controller;
 use App\Models\User;
+use App\Support\PasswordRules;
 use Illuminate\Auth\Events\Registered;
 use Illuminate\Http\RedirectResponse;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Hash;
-use Illuminate\Validation\Rules;
 use Illuminate\View\View;
 
 class RegisteredUserController extends Controller
@@ -27,6 +27,11 @@ class RegisteredUserController extends Controller
      */
     public function store(Request $request): RedirectResponse
     {
+        // El correo se guarda siempre sin espacios y en minúsculas.
+        $request->merge([
+            'email' => mb_strtolower(trim((string) $request->input('email'))),
+        ]);
+
         $request->validate(
             [
                 'name' => [
@@ -41,12 +46,26 @@ class RegisteredUserController extends Controller
                     'lowercase',
                     'email',
                     'max:255',
+                    // Si el correo ya pertenece a una cuenta de Google,
+                    // mostramos un aviso específico en lugar del genérico.
+                    function (string $attribute, mixed $value, \Closure $fail): void {
+                        $linkedWithGoogle = User::query()
+                            ->where('email', mb_strtolower((string) $value))
+                            ->where('provider', 'google')
+                            ->exists();
+
+                        if ($linkedWithGoogle) {
+                            $fail('Esta cuenta ya está vinculada con Google.');
+                        }
+                    },
                     'unique:' . User::class,
                 ],
                 'password' => [
                     'required',
                     'confirmed',
-                    Rules\Password::defaults(),
+                    // Requisitos de contraseña segura (app/Support/PasswordRules.php):
+                    // mínimo 8 caracteres, mayúscula, minúscula y número.
+                    PasswordRules::rule(),
                 ],
             ],
             [
@@ -61,10 +80,7 @@ class RegisteredUserController extends Controller
                 'email.max' => 'El correo no puede superar los 255 caracteres.',
                 'email.unique' => 'Este correo ya está registrado.',
 
-                'password.required' => 'Introduce una contraseña.',
-                'password.confirmed' => 'Las contraseñas no coinciden.',
-                'password.min' => 'La contraseña debe tener al menos :min caracteres.',
-            ]
+            ] + PasswordRules::messages()
         );
 
         $user = User::create([
@@ -83,6 +99,8 @@ class RegisteredUserController extends Controller
 
         Auth::login($user);
 
-        return redirect(route('dashboard', absolute: false));
+        // Recién creada: vamos directos a la pantalla de verificación
+        // (sin el aviso de "cuenta no verificada").
+        return redirect(route('verification.notice', absolute: false));
     }
 }

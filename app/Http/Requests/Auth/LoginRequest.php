@@ -21,6 +21,17 @@ class LoginRequest extends FormRequest
     }
 
     /**
+     * Limpiar el correo antes de validar: sin espacios y en minúsculas,
+     * así " Eric@Gmail.com " y "eric@gmail.com" son la misma cuenta.
+     */
+    protected function prepareForValidation(): void
+    {
+        $this->merge([
+            'email' => mb_strtolower(trim((string) $this->input('email'))),
+        ]);
+    }
+
+    /**
      * Reglas de validación.
      */
     public function rules(): array
@@ -51,6 +62,22 @@ class LoginRequest extends FormRequest
     public function authenticate(): void
     {
         $this->ensureIsNotRateLimited();
+
+        // Las cuentas creadas con Google o GitHub no tienen contraseña propia:
+        // solo pueden entrar con su proveedor.
+        $socialUser = User::where('email', $this->input('email'))
+            ->whereNotNull('provider')
+            ->first();
+
+        if ($socialUser) {
+            RateLimiter::hit($this->throttleKey());
+
+            $name = $socialUser->provider === 'github' ? 'GitHub' : 'Google';
+
+            throw ValidationException::withMessages([
+                'social' => "Esta cuenta se creó con {$name}. Inicia sesión con el botón «Continuar con {$name}».",
+            ]);
+        }
 
         $authenticated = Auth::attempt(
             $this->only('email', 'password'),
