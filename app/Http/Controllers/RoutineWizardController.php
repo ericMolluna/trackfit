@@ -301,7 +301,7 @@ class RoutineWizardController extends Controller
         session()->forget('routine_wizard');
 
         return redirect()
-            ->route('rutina.follow', ['routine' => $routine->id])
+            ->route('rutina.follow', ['routine' => $routine])
             ->with('ok', $message);
     }
 

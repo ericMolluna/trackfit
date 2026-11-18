@@ -372,7 +372,7 @@
 
                         <form
                             method="POST"
-                            action="{{ route('nutrition.remove', $l->id) }}"
+                            action="{{ route('nutrition.remove', $l) }}"
                         >
                             @csrf
 

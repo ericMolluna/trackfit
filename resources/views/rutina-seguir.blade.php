@@ -79,7 +79,7 @@
                                     ->implode(', ');
                             @endphp
 
-                            <option value="{{ $savedRoutine->id }}" @selected($routine->id === $savedRoutine->id)>
+                            <option value="{{ $savedRoutine->getRouteKey() }}" @selected($routine->id === $savedRoutine->id)>
                                 {{ $savedRoutine->name }}@if ($scheduledDays !== '') — {{ $scheduledDays }}@endif
                             </option>
                         @endforeach
@@ -134,7 +134,7 @@
                             </div>
                         </div>
 
-                        <form method="POST" action="{{ route('workout.start', $d->id) }}">
+                        <form method="POST" action="{{ route('workout.start', $d) }}">
                             @csrf
 
                             <button class="tf-btn tf-btn-small tf-start-workout-btn" type="submit">

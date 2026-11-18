@@ -344,7 +344,7 @@
                             @endif
                         </ul>
 
-                        <form method="POST" action="{{ route('workout.start', $routineDay->id) }}">
+                        <form method="POST" action="{{ route('workout.start', $routineDay) }}">
                             @csrf
 
                             <button

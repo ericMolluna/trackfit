@@ -162,7 +162,7 @@ class WorkoutController extends Controller
         );
 
         return redirect()
-            ->route('rutina.follow', ['routine' => $routineDay->routine_id])
+            ->route('rutina.follow', ['routine' => $routineDay->routine])
             ->with(
                 'ok',
                 'Entreno guardado correctamente ✅ · Duración estimada: '

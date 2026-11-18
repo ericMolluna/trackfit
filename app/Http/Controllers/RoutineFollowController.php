@@ -22,7 +22,7 @@ class RoutineFollowController extends Controller
     public function show(Request $request)
     {
         $data = $request->validate([
-            'routine' => ['nullable', 'integer', 'min:1'],
+            'routine' => ['nullable', 'string', 'max:200'],
         ]);
 
         $routines = Routine::where('user_id', auth()->id())
@@ -43,7 +43,9 @@ class RoutineFollowController extends Controller
 
         if (isset($data['routine'])) {
             // Solo rutinas del usuario autenticado.
-            $routine = $routines->firstWhere('id', (int) $data['routine']);
+            // El identificador viaja cifrado en la URL.
+            $routineId = Routine::decodeRouteKey($data['routine']);
+            $routine = $routineId ? $routines->firstWhere('id', $routineId) : null;
 
             abort_unless($routine, 404);
         } else {

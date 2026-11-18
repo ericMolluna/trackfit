@@ -574,7 +574,7 @@
             @if ($isActive)
                 <form
                     method="POST"
-                    action="{{ route('workout.finish', $routineDay->id) }}"
+                    action="{{ route('workout.finish', $routineDay) }}"
                     id="workoutForm"
                 >
                     @csrf
@@ -819,7 +819,7 @@
                 <a
                     class="wp-button"
                     href="{{ route('rutina.follow', [
-                        'routine' => $routineDay->routine_id,
+                        'routine' => $routineDay->routine,
                     ]) }}"
                 >
                     ← Volver a esta rutina

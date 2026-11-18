@@ -66,7 +66,7 @@ class RoutineManageController extends Controller
         $this->authorizeRoutine($routine);
 
         return redirect()->route('rutina.follow', [
-            'routine' => $routine->id,
+            'routine' => $routine,
             'editar' => 1,
         ]);
     }
@@ -150,7 +150,7 @@ class RoutineManageController extends Controller
         });
 
         return redirect()
-            ->route('rutina.follow', ['routine' => $routine->id])
+            ->route('rutina.follow', ['routine' => $routine])
             ->with('ok', 'Cambios guardados ✅');
     }
 
@@ -197,7 +197,7 @@ class RoutineManageController extends Controller
 
         // Desde la página de la rutina abrimos directamente la copia.
         return redirect()
-            ->route('rutina.follow', ['routine' => $copy->id])
+            ->route('rutina.follow', ['routine' => $copy])
             ->with('ok', $message);
     }
 

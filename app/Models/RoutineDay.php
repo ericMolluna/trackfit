@@ -2,13 +2,14 @@
 
 namespace App\Models;
 
+use App\Models\Concerns\HasEncryptedRouteKey;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\SoftDeletes; // ← NUEVO
 
 class RoutineDay extends Model
 {
-    use HasFactory, SoftDeletes; // ← NUEVO: SoftDeletes
+    use HasFactory, SoftDeletes, HasEncryptedRouteKey; // ← NUEVO: SoftDeletes
 
     protected $fillable = [
         'routine_id',

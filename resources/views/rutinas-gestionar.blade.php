@@ -248,7 +248,7 @@
                         </div>
 
                         <div class="tf-manage-actions">
-                            <a href="{{ route('rutina.follow', ['routine' => $routine->id]) }}" class="tf-manage-btn tf-manage-btn-primary">
+                            <a href="{{ route('rutina.follow', ['routine' => $routine]) }}" class="tf-manage-btn tf-manage-btn-primary">
                                 ▶ Ver y entrenar
                             </a>
 
